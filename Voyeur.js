@@ -3,9 +3,99 @@
 		var elems = document.querySelectorAll(selector);
 		if(elems.length == 1) return Voyeur.extendNode(elems[0]);
 		else return Voyeur.extendNode({}, elems);
-	}
+	};
 
 	Voyeur.nodes = "a,abbr,acronym,address,applet,area,article,aside,audio,b,base,basefont,bdi,bdo,bgsound,big,blink,blockquote,body,br,button,canvas,caption,center,cite,code,col,colgroup,data,datalist,dd,del,details,dfn,dir,div,dl,dt,em,embed,fieldset,figcaption,figure,font,footer,form,frame,frameset,h1,h2,h3,h4,h5,h6,head,header,hgroup,hr,html,i,iframe,img,input,ins,isindex,kbd,keygen,label,legend,li,link,listing,main,map,mark,marquee,menu,menuitem,meta,meter,nav,nobr,noframes,noscript,object,ol,optgroup,option,output,p,param,plaintext,pre,progress,q,rp,rt,ruby,s,samp,script,section,select,small,source,spacer,span,strike,strong,style,sub,summary,sup,table,tbody,td,textarea,tfoot,th,thead,time,title,tr,track,tt,u,ul,var,video,wbr,xmp".split(",");
+
+	Voyeur.extendCreate = function(obj) {
+		Voyeur.nodes.forEach(function(tag) {
+			Object.defineProperty(obj, tag, {
+				get: function() {
+					this.tag = tag;
+					this.factor = 1;
+					this.attr = {};
+					this.root = this.root || this;
+
+					this.child = Voyeur.extendCreate({
+						parent: this,
+						root: this.root
+					});
+
+					return this.child;
+				}
+			});
+		});
+
+		obj.text = function(text) {
+			this.parent._text = text;
+			return this;
+		};
+
+		obj.eq = function(u, v) {
+			this._eqU = u;
+			this._eqV = v || u + 1;
+			return this;
+		};
+
+		obj.attr = function(attr, val) {
+			this.parent.attr[attr] = val;
+			return this;
+		};
+
+		obj.mult = function(factor) {
+			this.parent.factor = factor;
+			return this;
+		};
+
+		["class", "href"].forEach(function(attr) {
+			obj[attr] = function(val) {
+				this.attr(attr, val);
+				return this;
+			}
+		})
+
+		obj["return"] = function() {
+			var root;
+			(function recur(parents, node) {	
+				if(node) {
+					var newParents = [];
+
+					//Sort on the eq
+					if(parents && node._eqU) parents = parents.slice(node._eqU, node._eqV);
+
+
+					if(parents) {
+						parents.forEach(function(elem) {
+							for(var i = 0; i < node.factor; i++) {
+								var addition = createElem(node);
+								newParents.push(addition);
+								elem.appendChild(addition);
+							}
+						}); 
+					} else {
+						for(var i = 0; i < node.factor; i++) {
+							var addition = createElem(node);
+							newParents.push(addition);
+							root = newParents;
+						}
+					}
+
+					recur(newParents, node.child);
+				}
+			})(undefined, this.root);
+
+			return Voyeur.extendNode({}, root);
+		}
+
+		function createElem(node) {
+			var elem = document.createElement(node.tag);
+			for(var attr in node.attr) elem.setAttribute(attr, node.attr[attr]);
+			if(node._text) elem.textContent = node._text;
+			return elem;
+		}
+
+		return obj;
+	};
 
 	/**
 	 * Expand a node's children vie their tags
@@ -112,4 +202,5 @@
 	};
 
 	window.Voyeur = Voyeur.extendNode(document.body, undefined, Voyeur);
+	window.Voyeur.create = Voyeur.extendCreate({});
 })();
