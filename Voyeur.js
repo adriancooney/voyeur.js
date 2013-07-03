@@ -84,7 +84,7 @@
 				}
 			})(undefined, this.root);
 
-			return Voyeur.extendNode({}, root);
+			return Voyeur.extendNode({}, root)[this.root.tag];
 		}
 
 		function createElem(node) {
@@ -128,7 +128,7 @@
 						}
 					})
 				} else {
-					node = Voyeur.extendNodeList(recipient || node, (children) ? false : child, nodeList);
+					node = Voyeur.extendNodeList(recipient || node, child, nodeList);
 				}
 			}
 		});
@@ -202,5 +202,6 @@
 	};
 
 	window.Voyeur = Voyeur.extendNode(document.body, undefined, Voyeur);
+	window.V = window.Voyeur;
 	window.Voyeur.create = Voyeur.extendCreate({});
 })();

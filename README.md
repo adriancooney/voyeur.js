@@ -40,7 +40,7 @@ Voyuer.div.appendChild(content);
 ```
 
 ### Concept
-The goal of Voyeur is to make transversing the DOM as simple and as natural as possible. Voyeur uses some fancy 'getter' techniques to allow for dot operator selection of node children.
+The goal of Voyeur is to make transversing the DOM as simple and as natural as possible. Voyeur uses some fancy 'getter' techniques to allow for dot operator selection of a node's children.
 
 ### API
 #### `Voyeur`
@@ -48,3 +48,5 @@ The goal of Voyeur is to make transversing the DOM as simple and as natural as p
 #### `Voyeur( _&lt;selector&gt;_ )
 
 #### `Voyeur.create.__&lt;tag name&gt;__`
+
+License: _MIT_
