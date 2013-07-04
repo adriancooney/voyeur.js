@@ -1,31 +1,11 @@
-/**
- * API
- *
- * Voyeur.div.section.create.a.innerText = "Hello world!";
- * Voyeur.create.div.section.use() //Return div>section
- * Voyeur.create.div.section //Return section by itself
-Voyeur.create.div.ul.li.mult(10).use(function(li) {
-		li.a.innerText = "Hello world!";
-		li.div.use(function(div) {
-			div.style.background = "#f00";
-			div.style.textAlign = "center";
-
-			div.p.mult(10).use(function(p) {
-				p.innerText = "A p!";
-			})
-		})
-});
- *
- * Voyeur.div.find(".list-item").use(function(li) {
- * 		li.create.a.innerText = "Hello world!";
- * });
- *
- * Voyeur("#id").a
- */
-
 (function() {
 	"use strict";
 
+	/**
+	 * Voyeur "constructor". Never initilize with the new keyword.
+	 * @param {HTMLElement|Array of elements} nodes Array of nodes to create a Voyeur object with
+	 * @return {Voyeur} Voyeur extended Node
+	 */
 	var Voyeur = function(nodes) {
 		if(nodes instanceof HTMLElement) Voyeur.extendChildren(nodes); //Single node so extend it's children
 
@@ -42,12 +22,10 @@ Voyeur.create.div.ul.li.mult(10).use(function(li) {
 		nodes.use = function(fn) {
 			if(fn) {
 				if(nodes instanceof Array) {
-					console.log("Multiple");
 					nodes.forEach(function(elem, i) {
 						fn.call(window, Voyeur(elem), i);
 					})
 				} else {
-					console.log("1");
 					fn.call(window, nodes);
 				}
 			}
@@ -182,7 +160,6 @@ Voyeur.create.div.ul.li.mult(10).use(function(li) {
 	 * @return {Array|HTMLElement}         The array of new parents or element
 	 */
 	Voyeur.createElement = function(parents, tag) {
-		console.log("Creating node", tag, parents);
 		if(parents) {
 			if(parents instanceof Array) {
 				var newParents = [];
