@@ -1,207 +1,244 @@
+/**
+ * API
+ *
+ * Voyeur.div.section.create.a.innerText = "Hello world!";
+ * Voyeur.create.div.section.use() //Return div>section
+ * Voyeur.create.div.section //Return section by itself
+Voyeur.create.div.ul.li.mult(10).use(function(li) {
+		li.a.innerText = "Hello world!";
+		li.div.use(function(div) {
+			div.style.background = "#f00";
+			div.style.textAlign = "center";
+
+			div.p.mult(10).use(function(p) {
+				p.innerText = "A p!";
+			})
+		})
+});
+ *
+ * Voyeur.div.find(".list-item").use(function(li) {
+ * 		li.create.a.innerText = "Hello world!";
+ * });
+ *
+ * Voyeur("#id").a
+ */
+
 (function() {
-	var Voyeur = function(selector) {
-		var elems = document.querySelectorAll(selector);
-		if(elems.length == 1) return Voyeur.extendNode(elems[0]);
-		else return Voyeur.extendNode({}, elems);
+	"use strict";
+
+	var Voyeur = function(nodes) {
+		if(nodes instanceof HTMLElement) Voyeur.extendChildren(nodes); //Single node so extend it's children
+
+		//Create the `create` instance
+		nodes.create = Voyeur.extendTags({}, function(tag) {
+			return Voyeur.create.bind({tag: tag, parents: nodes})()
+		})
+
+		/**
+		 * Use the current scope
+		 * @param  {Function} fn The callback function with the current scope sent as parameter
+		 * @return {Voyeur}      The root node
+		 */
+		nodes.use = function(fn) {
+			if(fn) {
+				if(nodes instanceof Array) {
+					console.log("Multiple");
+					nodes.forEach(function(elem, i) {
+						fn.call(window, Voyeur(elem), i);
+					})
+				} else {
+					console.log("1");
+					fn.call(window, nodes);
+				}
+			}
+
+			return nodes.root;
+		};
+
+		/**
+		 * Find via selector inside the current scope
+		 * @param  {String} selector The selector
+		 * @return {Voyeur}          The new Voyeur object
+		 */
+		nodes.find = function(selector) {
+			var children;
+			if(nodes instanceof Array) {
+				children = [];
+				nodes.forEach(function(node) {
+					children = children.concat(Array.prototype.slice.call(node.querySelectorAll(selector)));
+				});
+			} else {
+				children = Array.prototype.slice.call(nodes.querySelectorAll(selector));
+			}
+
+			return Voyeur(children);
+		};
+
+		/**
+		 * Select part of an array
+		 * @param  {number} u The start index
+		 * @param  {number} v The end index (optional)
+		 * @return {Voyeur}   The selected nodes
+		 */
+		nodes.eq = function(u, v) {
+			if(nodes instanceof Array) {
+				var newNodes = nodes.slice(u, v || (u + 1));
+				return Voyeur(newNodes.length == 1 ? newNodes[0] : newNodes);
+			} else return nodes;
+		};
+
+		return nodes;
 	};
 
-	Voyeur.nodes = "a,abbr,acronym,address,applet,area,article,aside,audio,b,base,basefont,bdi,bdo,bgsound,big,blink,blockquote,body,br,button,canvas,caption,center,cite,code,col,colgroup,data,datalist,dd,del,details,dfn,dir,div,dl,dt,em,embed,fieldset,figcaption,figure,font,footer,form,frame,frameset,h1,h2,h3,h4,h5,h6,head,header,hgroup,hr,html,i,iframe,img,input,ins,isindex,kbd,keygen,label,legend,li,link,listing,main,map,mark,marquee,menu,menuitem,meta,meter,nav,nobr,noframes,noscript,object,ol,optgroup,option,output,p,param,plaintext,pre,progress,q,rp,rt,ruby,s,samp,script,section,select,small,source,spacer,span,strike,strong,style,sub,summary,sup,table,tbody,td,textarea,tfoot,th,thead,time,title,tr,track,tt,u,ul,var,video,wbr,xmp".split(",");
+	/**
+	 * Extends a node's children unto it
+	 * @param  {Object} node  The node to extend it's children unto
+	 * @param {Array} children An array of children to expand to
+	 * @return {Object}      The object extended
+	 */
+	Voyeur.extendChildren = function(node, children) {
+		children = Array.prototype.slice.call(children || node.children);
 
-	Voyeur.extendCreate = function(obj) {
+		//The tag map
+		var map = {};
+
+		for (var i = children.length - 1; i >= 0; i--) {
+			var child = children[i],
+				tag = child.tagName.toLowerCase();
+
+			if(!map[tag]) map[tag] = [];
+			map[tag].push(child);
+		}
+
+		for(var key in map) {
+			if(!node[key]) {
+				(function(key) { //Closure required
+					Object.defineProperty(node, key, {
+						get: function() {
+							return Voyeur(map[key].length == 1 ? map[key][0] : map[key]);
+						}
+					});
+				})(key);
+			}
+		}
+	}
+
+	/**
+	 * Voyeur.create recursive function
+	 * @param  {Array|HTMLElement} parents The array of parents|htmlelement
+	 * @return {Object}         A create object
+	 */
+	Voyeur.create = function(parents) {
+		var self = parents || Voyeur.createElement(this.parents, this.tag);
+		self.root = this.root || self;
+		self.parents = this.parents;
+
+		Voyeur.extendTags(self, function(tag) {
+			Voyeur.unextendTags(self);
+
+			return Voyeur.create.bind({
+				root: self.root,
+				parents: self,
+				tag: tag
+			})()
+		});
+
+		self.use = function(fn) {
+			if(fn) {
+				if(self instanceof Array) {
+					self.forEach(function(elem, i) {
+						fn.call(window, Voyeur(elem), i);
+					})
+				} else {
+					fn.call(window, Voyeur(self));
+				}
+			}
+
+			return Voyeur(self.root);
+		};
+
+		self.mult = function(factor) {
+			//Get rid of the inital node
+			self.parentNode.removeChild(self);
+
+			var elems = [];
+			for(var i = 0; i < factor; i++) {
+				var elem = Voyeur.createElement(self.parents, self.tagName.toLowerCase());
+				elems.push(elem);
+			}
+			return Voyeur.create.bind({
+				root: self.root
+			})(elems);
+		};
+
+		return self;
+
+	};
+
+	/**
+	 * Create an element and insert it into parents if passed
+	 * @param  {Array|HTMLElement} parents Parent(s) to insert into (optional)
+	 * @param  {String} tag     The HTML element tag
+	 * @return {Array|HTMLElement}         The array of new parents or element
+	 */
+	Voyeur.createElement = function(parents, tag) {
+		console.log("Creating node", tag, parents);
+		if(parents) {
+			if(parents instanceof Array) {
+				var newParents = [];
+				parents.forEach(function(mummy) {
+					var elem = create();
+					mummy.appendChild(elem);
+					newParents.push(elem);
+				});
+
+				return newParents;
+			} else {
+				var elem = create();
+				parents.appendChild(elem);
+				return elem;
+			}
+		} else {
+			return create();
+		}
+
+		function create() {
+			return document.createElement(tag);
+		}
+	};
+
+	Voyeur.nodes = "a,abbr,acronym,address,applet,area,article,aside,audio,b,base,basefont,bdi,bdo,bgsound,big,blink,blockquote,br,button,canvas,caption,center,cite,code,col,colgroup,data,datalist,dd,del,details,dfn,dir,div,dl,dt,em,embed,fieldset,figcaption,figure,font,footer,form,frame,frameset,h1,h2,h3,h4,h5,h6,header,hgroup,hr,i,iframe,img,input,ins,isindex,kbd,keygen,label,legend,li,link,listing,main,map,mark,marquee,menu,menuitem,meta,meter,nav,nobr,noframes,noscript,object,ol,optgroup,option,output,p,param,plaintext,pre,progress,q,rp,rt,ruby,s,samp,section,select,small,source,spacer,span,strike,strong,sub,summary,sup,table,tbody,td,textarea,tfoot,th,thead,time,tr,track,tt,u,ul,var,video,wbr,xmp".split(",");
+
+	/**
+	 * Extends all of the Voyeur.nodes tags onto an object via a getter
+	 * @param  {Object}   obj The reciever object
+	 * @param  {Function} fn  The function on get with `tag` sent to it
+	 * @return {Object}       The reciever object
+	 */
+	Voyeur.extendTags = function(obj, fn) {
 		Voyeur.nodes.forEach(function(tag) {
 			Object.defineProperty(obj, tag, {
 				get: function() {
-					this.tag = tag;
-					this.factor = 1;
-					this.attr = {};
-					this.root = this.root || this;
+					return fn.call(obj, tag);
+				},
 
-					this.child = Voyeur.extendCreate({
-						parent: this,
-						root: this.root
-					});
-
-					return this.child;
-				}
+				configurable: true
 			});
 		});
-
-		obj.text = function(text) {
-			this.parent._text = text;
-			return this;
-		};
-
-		obj.eq = function(u, v) {
-			this._eqU = u;
-			this._eqV = v || u + 1;
-			return this;
-		};
-
-		obj.attr = function(attr, val) {
-			this.parent.attr[attr] = val;
-			return this;
-		};
-
-		obj.mult = function(factor) {
-			this.parent.factor = factor;
-			return this;
-		};
-
-		["class", "href"].forEach(function(attr) {
-			obj[attr] = function(val) {
-				this.attr(attr, val);
-				return this;
-			}
-		})
-
-		obj["return"] = function() {
-			var root;
-			(function recur(parents, node) {	
-				if(node) {
-					var newParents = [];
-
-					//Sort on the eq
-					if(parents && node._eqU) parents = parents.slice(node._eqU, node._eqV);
-
-
-					if(parents) {
-						parents.forEach(function(elem) {
-							for(var i = 0; i < node.factor; i++) {
-								var addition = createElem(node);
-								newParents.push(addition);
-								elem.appendChild(addition);
-							}
-						}); 
-					} else {
-						for(var i = 0; i < node.factor; i++) {
-							var addition = createElem(node);
-							newParents.push(addition);
-							root = newParents;
-						}
-					}
-
-					recur(newParents, node.child);
-				}
-			})(undefined, this.root);
-
-			return Voyeur.extendNode({}, root)[this.root.tag];
-		}
-
-		function createElem(node) {
-			var elem = document.createElement(node.tag);
-			for(var attr in node.attr) elem.setAttribute(attr, node.attr[attr]);
-			if(node._text) elem.textContent = node._text;
-			return elem;
-		}
 
 		return obj;
 	};
 
-	/**
-	 * Expand a node's children vie their tags
-	 * and expose them onto the node.
-	 * @param  {HTMLElement} node 
-	 * @return {null}
-	 */
-	Voyeur.extendNode = function(node, children, recipient) {
-		var children = children || Array.prototype.slice.call(node.children),
-			nodes = {};
-
-		//Sort out the node amounts
-		for (var i = children.length - 1; i >= 0; i--) {
-			var tag = children[i].tagName.toLowerCase();
-
-			if(!nodes[tag]) nodes[tag] = [children[i]];
-			else nodes[tag].push(children[i]);
-		};
-
-		//We need a closure
-		Object.keys(nodes).forEach(function(child) {
-			var nodeList = nodes[child];
-
-			if(!node[child]) {
-				if(nodeList.length == 1) {
-					// console.log("Extending node ", node, " with tag ", child, nodeList[0]);
-					Object.defineProperty(recipient || node, child, {
-						get: function() {
-							return Voyeur.extendNode(nodeList[0]);
-						}
-					})
-				} else {
-					node = Voyeur.extendNodeList(recipient || node, child, nodeList);
-				}
-			}
+	Voyeur.unextendTags = function(obj) {
+		Voyeur.nodes.forEach(function(tag) {
+			delete obj[tag];
 		});
 
-		//Add Voyeur.fn functions. Not sure if this is a good idea but anyway.
-		if(!recipient) {
-			for(var fn in Voyeur.fn) {
-				node[fn] = function() {
-					Voyeur.fn[fn].apply(node, arguments);
-				}
-			}
-		}
-
-		//Give the user a little information about the tree
-		node.nodes = Object.keys(nodes);
-
-		return recipient || node;
+		return obj;
 	};
 
-	/**
-	 * Extends a node[tag] to a node list. I choose and object and
-	 * getters and setters for performance instead of creating a "new"
-	 * Voyeur object for every node within the nodeList.
-	 * @param  {HTMLElement} node     The node to extend
-	 * @param  {String} tag      The tag to extend on the node
-	 * @param  {Array} nodeList An array of elements
-	 * @return {Object} The new voyeur node          
-	 */
-	Voyeur.extendNodeList = function(node, tag, nodeList) {
-		// console.log("Extending ", node, " with the tag ", tag, nodeList);
-		var obj = {};
-
-		nodeList.forEach(function(elem, i) {
-			Object.defineProperty(obj, i, {
-				get: function() {
-					return Voyeur.extendNode(elem);
-				}
-			});
-		});
-
-		obj.length = nodeList.length;
-
-		var arrayFn = Object.getOwnPropertyNames(Array.prototype),
-			objectFn = Object.getOwnPropertyNames(Object.prototype);
-
-		//Don't include "length"
-		objectFn.push("length");
-
-		//Extend all the array functions (excluding Array.prototype INTERSECT Object.prototype)
-		arrayFn.forEach(function(fn) {
-			if(objectFn.indexOf(fn) == -1)
-				obj[fn] = function() {
-					Array.prototype[fn].apply(obj, arguments)
-				}
-		});
-
-		if(tag) node[tag] = obj;
-		else node = obj;
-
-		return node;
-	};
-
-	Voyeur.fn = {
-		"class": function(_class, force) {
-			var classes = (this.getAttribute("class") || "").split(" ");
-			if(classes.indexOf(_class) == -1) classes.push(_class);
-			else if(!force) classes.splice(classes.indexOf(_class), 1);
-
-			this.setAttribute("class", classes.join(" ").trim());
-		}
-	};
-
-	window.Voyeur = Voyeur.extendNode(document.body, undefined, Voyeur);
-	window.V = window.Voyeur;
-	window.Voyeur.create = Voyeur.extendCreate({});
+	window.Voyeur = Voyeur(document.body);
+	window.Voyeur.create = Voyeur.extendTags({}, function(tag) {
+		return Voyeur.create.bind({tag: tag})()
+	});
 })();
