@@ -47,6 +47,6 @@ The goal of Voyeur is to make transversing the DOM as simple and as natural as p
 
 #### Voyeur( _&lt;selector&gt;_ )
 
-#### Voyeur.create.__&lt;tag name&gt;__
+#### Voyeur.create._&lt;tag name&gt;_
 
 License: _MIT_
