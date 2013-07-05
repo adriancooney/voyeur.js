@@ -151,6 +151,14 @@
 			})(elems);
 		};
 
+		self.special = function(tag) {
+			return Voyeur.create.bind({
+				root: self.root,
+				parents: self,
+				tag: tag
+			})();
+		}
+
 		return self;
 
 	};
@@ -216,8 +224,18 @@
 		return obj;
 	};
 
+	//Initilize Voyeur on the document
 	window.Voyeur = Voyeur(document.body);
+
+	//Create for the root Voyeur
 	window.Voyeur.create = Voyeur.extendTags({}, function(tag) {
 		return Voyeur.create.bind({tag: tag})()
 	});
+
+	//Special create function 
+	window.Voyeur.create.special = function(tag) {
+		return Voyeur.create.bind({
+			tag: tag
+		})();
+	}
 })();
