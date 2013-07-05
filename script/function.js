@@ -5,7 +5,10 @@ Voyeur.find("#input").addEventListener("keydown", function() {
 });
 
 function runExample() {
-	var iframe = Voyeur.create.iframe;
+	var iframe = Voyeur.find(".output").create.iframe.use(function(iframe) {
+		iframe.style.display = "none";
+		
 
-	
+		var text = Voyeur.find("#input").textContent;
+	});
 }
