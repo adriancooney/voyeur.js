@@ -1,23 +1,41 @@
+<!DOCTYPE html>
 <html>
 <head>
-	<title>Voyeur</title>
+    <title>Page</title>
+    <link rel="stylesheet" type="text/css" href="style/reset.css"/>
+    <link rel="stylesheet" type="text/css" href="style/style.css"/>
 </head>
 <body>
-<div>
-</div>
-</body>
-  <script src="Voyeur.js"></script>
-  <script>
-  Voyeur.div.create.div.ul.li.mult(10).use(function(li) {
-      li.create.a.innerText = "Hello world!";
-      li.create.div.use(function(div) {
-        div.style.background = "#f00";
-        div.style.textAlign = "center";
+	<header>
+		<div class="wrapper">
+			<h1>Voyeur.js</h1>
+			<div class="overhead">
+				<p>Voyeur is a 
+		</div>
+	</header>
+	<div class="content">
+		<div class="wrapper">
+			<div class="banner columns">
+				<div class="half">
+					<h3>Input</h3>
+					<textarea id="input" wrap="off">Voyeur.create.div.section.mult(3).use(function(section) {
+	section.create.h1.innerText = "Hello world!";
+});</textarea>
+				</div><div class="half">
+					<h3>Output</h3>
+					<div class="output"><pre></pre></div>
+				</div>
+			</div>
 
-        div.create.p.mult(10).use(function(p) {
-          p.innerText = "A p!";
-        })
-      })
-  });
-  </script>
+			<h2>API</h2>
+		</div>
+	</div>
+	<footer>
+		<div class="wrapper">
+			<p>An open-source project by <a href="http://adriancooney.ie">Adrian Cooney</a></p>
+		</div>
+	</footer>
+</body>
+<script src="../HTML.stringify/HTML.stringify.js"></script>
+<script src="Voyeur.js" type="text/javascript"></script>
 </html>

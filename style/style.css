@@ -1,0 +1,73 @@
+@import url(http://fonts.googleapis.com/css?family=Petit+Formal+Script);
+
+@import url(http://fonts.googleapis.com/css?family=Signika:400,700,600,300);
+body {
+  font-family: 'Signika', Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  background: #321e33;
+  color: #fff;
+}
+.wrapper {
+  width: 960px;
+  margin: 0 auto;
+}
+.columns div {
+  display: inline-block;
+  vertical-align: top;
+  zoom: 1;
+  *display: inline;
+}
+.half {
+  width: 50%;
+}
+h2 {
+  font-weight: 700;
+  font-size: 28px;
+  padding: 12px;
+  border-bottom: 1px solid #513153;
+}
+h3 {
+  font-family: Palatino Linotype, Book Antiqua, Palatino, serif;
+  letter-spacing: 4px;
+  font-size: 14px;
+  text-transform: uppercase;
+  margin: 9px 18px;
+}
+header {
+  height: 360px;
+  background: url(../image/crissXcross.png);
+  border-bottom: 12px solid #161616;
+}
+header h1 {
+  /*font-family: times;
+		font-size: 32px;
+		font-style: italic; */
+
+  letter-spacing: -3px;
+  font-family: 'Petit Formal Script', cursive;
+  font-size: 40px;
+  padding: 24px;
+}
+.banner {
+  margin: 18px 0;
+}
+.banner textarea {
+  width: 90%;
+  margin: 0 18px;
+  padding: 12px;
+  background: #603162;
+  border: 1px solid #3f2040;
+  outline: none;
+  height: 180px;
+  border-radius: 8px;
+  color: #e1cde2;
+  font-family: Monaco, monospace;
+  font-size: 14px;
+}
+footer {
+  text-align: center;
+  color: #603162;
+}
+footer a {
+  color: #6f3236;
+}
