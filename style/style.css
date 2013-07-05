@@ -1,5 +1,7 @@
 @import url(http://fonts.googleapis.com/css?family=Petit+Formal+Script);
 
+@import url(http://fonts.googleapis.com/css?family=Montserrat:400,700);
+
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,800,700,300);
 body {
   font-family: 'Open Sans', Helvetica, Arial, sans-serif;
@@ -29,8 +31,12 @@ h2 {
   border-bottom: 1px solid #513153;
 }
 h3 {
-  font-family: Palatino Linotype, Book Antiqua, Palatino, serif;
-  letter-spacing: 4px;
+  /*
+	font-family: Palatino Linotype, Book Antiqua, Palatino, serif;
+	letter-spacing: 4px; */
+
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
   font-size: 14px;
   text-transform: uppercase;
   margin: 9px 18px;
@@ -57,8 +63,11 @@ header h1 {
   padding: 24px;
 }
 header .overhead p {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
   text-align: center;
-  font-size: 24px;
+  font-size: 28px;
 }
 .banner {
   margin: 18px 0;
