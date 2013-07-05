@@ -237,5 +237,5 @@
 		return Voyeur.create.bind({
 			tag: tag
 		})();
-	}
+	};
 })();
