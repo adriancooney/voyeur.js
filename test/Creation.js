@@ -22,3 +22,19 @@ test("Voyeur.<tag>.create.<tag> -- Creates and append tag within scope", 2, func
 	equal(span.tagName, "SPAN", "Tag created");
 	equal(span.parentNode.tagName, "SECTION", "Tag within parent");
 });
+
+test("Voyeur.create.mult(<int>) -- Element multiplication on root", 3, function() {
+	var spans = Voyeur.create.span.mult(10);
+
+	ok(spans instanceof Array, "Multiple elements created and is array");
+	ok(spans.length == 10, "Exact amount of elements preset");
+	equal(spans[0].tagName, "SPAN", "Element specificed created");
+});
+
+test("Voyeur.<tag>.create.mult(<int>) -- Element multiplication on tag", 3, function() {
+	var spans = Voyeur.section.create.span.mult(10);
+
+	ok(spans instanceof Array, "Multiple elements created and is array");
+	ok(spans.length == 10, "Exact amount of elements preset");
+	equal(spans[0].tagName, "SPAN", "Element specificed created");
+});
