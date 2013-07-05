@@ -49,7 +49,7 @@
 				children = Array.prototype.slice.call(nodes.querySelectorAll(selector));
 			}
 
-			return Voyeur(children);
+			return Voyeur(children.length == 1 ? children[0] : children);
 		};
 
 		/**
