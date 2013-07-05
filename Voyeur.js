@@ -132,6 +132,8 @@
 				}
 			}
 
+			Voyeur.unextendTags(self.root);
+
 			return Voyeur(self.root);
 		};
 
