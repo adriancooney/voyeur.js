@@ -1,5 +1,5 @@
 @import url(http://fonts.googleapis.com/css?family=Petit+Formal+Script);
-@import url(http://fonts.googleapis.com/css?family=Signika:400,700,600,300);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,800,700,300);
 
 @black: #161616;
 @purple: #321E33;
@@ -14,7 +14,7 @@
 @radius: 8px;
 
 body {
-	font-family: 'Signika', Helvetica, Arial, sans-serif;
+	font-family: 'Open Sans', Helvetica, Arial, sans-serif;
 	font-weight: 300;
 	background: @purple;
 	color: #fff;
@@ -37,7 +37,9 @@ body {
 }
 
 h2 {
-	font-weight: 700;
+	font-family: Palatino Linotype, Book Antiqua, Palatino, serif;
+	letter-spacing: 8px;
+	text-transform: uppercase;
 	font-size: 28px;
 	padding: @padding;
 	border-bottom: 1px solid lighten(@purple, 10%);
@@ -49,6 +51,13 @@ h3 {
 	font-size: 14px;
 	text-transform: uppercase;
 	margin: @margin/2 @margin;
+}
+
+hr {
+	border: none;
+	border-bottom: 2px solid darken(@purple, 3%);
+	height: 3px;
+	margin: @margin;
 }
 
 header {
@@ -64,6 +73,13 @@ header {
 		font-family: 'Petit Formal Script', cursive;
 		font-size: 40px;
 		padding: @padding * 2;
+	}
+
+	.overhead {
+		p {
+			text-align: center;
+			font-size: 24px;
+		}
 	}
 }
 
@@ -83,11 +99,26 @@ header {
 		font-family: Monaco, monospace;
 		font-size: 14px;
 	}
+
+	.output {
+		background: darken(@purple, 4%);
+		width: 90%;
+		height: 184px;
+		padding: @padding;
+		margin: 0 @margin;
+		border-radius: @radius;
+
+		pre {
+			font-family: Monaco, monospace;
+			font-size: 14px;
+		}
+	}
 }
 
 footer {
 	text-align: center;
 	color: @lightpurple;
+	padding: @padding;
 
 	a {
 		color: @wine;

@@ -1,8 +1,8 @@
 @import url(http://fonts.googleapis.com/css?family=Petit+Formal+Script);
 
-@import url(http://fonts.googleapis.com/css?family=Signika:400,700,600,300);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,800,700,300);
 body {
-  font-family: 'Signika', Helvetica, Arial, sans-serif;
+  font-family: 'Open Sans', Helvetica, Arial, sans-serif;
   font-weight: 300;
   background: #321e33;
   color: #fff;
@@ -21,7 +21,9 @@ body {
   width: 50%;
 }
 h2 {
-  font-weight: 700;
+  font-family: Palatino Linotype, Book Antiqua, Palatino, serif;
+  letter-spacing: 8px;
+  text-transform: uppercase;
   font-size: 28px;
   padding: 12px;
   border-bottom: 1px solid #513153;
@@ -32,6 +34,12 @@ h3 {
   font-size: 14px;
   text-transform: uppercase;
   margin: 9px 18px;
+}
+hr {
+  border: none;
+  border-bottom: 2px solid #291829;
+  height: 3px;
+  margin: 18px;
 }
 header {
   height: 360px;
@@ -47,6 +55,10 @@ header h1 {
   font-family: 'Petit Formal Script', cursive;
   font-size: 40px;
   padding: 24px;
+}
+header .overhead p {
+  text-align: center;
+  font-size: 24px;
 }
 .banner {
   margin: 18px 0;
@@ -64,9 +76,22 @@ header h1 {
   font-family: Monaco, monospace;
   font-size: 14px;
 }
+.banner .output {
+  background: #251626;
+  width: 90%;
+  height: 184px;
+  padding: 12px;
+  margin: 0 18px;
+  border-radius: 8px;
+}
+.banner .output pre {
+  font-family: Monaco, monospace;
+  font-size: 14px;
+}
 footer {
   text-align: center;
   color: #603162;
+  padding: 12px;
 }
 footer a {
   color: #6f3236;
