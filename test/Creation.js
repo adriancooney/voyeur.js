@@ -1,3 +1,5 @@
+module("Voyeur element creation");
+
 test("Voyeur.create.<tag> -- Creates tag", function() {
 	equal(Voyeur.create.div.tagName, "DIV", "Tag created.");
 });
