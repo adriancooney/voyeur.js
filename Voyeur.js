@@ -125,10 +125,12 @@
 			if(fn) {
 				if(self instanceof Array) {
 					self.forEach(function(elem, i) {
-						fn.call(window, Voyeur(elem), i);
+						elem = Voyeur(elem);
+						fn.call(elem, elem, i);
 					})
 				} else {
-					fn.call(window, Voyeur(self));
+					var vSelf = Voyeur(self);
+					fn.call(vSelf, vSelf);
 				}
 			}
 
