@@ -5,14 +5,14 @@ document.addEventListener("DOMContentLoaded", function() {
 	input = Voyeur.find("#input");
 	frame = Voyeur.find("#output").iframe;
 
-	console.log(frame, input);
-
 	//The intent edit
 	var timeout;
 	input.addEventListener("keydown", function() {
 		if(timeout) clearTimeout(timeout);
 		timeout = setTimeout(executeInput, 1000);
 	});
+
+	setTimeout(Storyboard.resume, 3000);
 });
 
 function executeInput() {
