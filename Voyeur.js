@@ -93,7 +93,9 @@
 				Object.defineProperty(node, key, {
 					get: function() {
 						return Voyeur(map[key].length == 1 ? map[key][0] : map[key]);
-					}
+					},
+
+					configurable: true
 				});
 			})(key);
 		}
