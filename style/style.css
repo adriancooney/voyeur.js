@@ -92,9 +92,9 @@ header .overhead p {
   border-radius: 8px;
   color: #e1cde2;
   font-family: Monaco, monospace;
-  font-size: 12px;
+  font-size: 14px;
 }
-.banner .output {
+.banner #output {
   background: #251626;
   width: 96%;
   height: 208px;
@@ -102,7 +102,7 @@ header .overhead p {
   border-radius: 8px;
   padding: 0 6px;
 }
-.banner .output iframe {
+.banner #output iframe {
   width: 100%;
   height: inherit;
 }

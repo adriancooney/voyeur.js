@@ -30,11 +30,31 @@
 		}
 
 		.highlight {
+			border-radius: 6px;
+			padding: 2px 0;
 			-webkit-animation: flash 1s normal;
+			-moz-animation: flash 1s normal;
+			-o-animation: flash 1s normal;
+			animation: flash 1s normal;
 		}
 
 		@-webkit-keyframes flash {
-			from { background: #f00; }
+			from { background: #fff; }
+			to { background: transparent; }
+		}
+
+		@-moz-keyframes flash {
+			from { background: #fff; }
+			to { background: transparent; }
+		}
+
+		@-o-keyframes flash {
+			from { background: #fff; }
+			to { background: transparent; }
+		}
+
+		@keyframes flash {
+			from { background: #fff; }
 			to { background: transparent; }
 		}
     </style>
@@ -68,16 +88,28 @@ var shadowDom = document.getElementById("shadow-dom"),
 shadowDom.addEventListener("DOMSubtreeModified", displayHTML);
 displayHTML();
 
+var timeout;
 onElementSelected = function(elements) {
-	console.log("ELEMENTS:", elements)
+	console.log(elements);
+	if(timeout) clearTimeout(timeout);
+	timeout = setTimeout(function() { 
+		highlight(elements);
+
+		setTimeout(function() {
+			unhighlight(elements)
+		}, 1000)
+	}, 100);
+};
+
+function highlight(elements) {
 	if(elements instanceof Array) elements.forEach(function(e) { e.setAttribute("data-highlight", "true"); });
 	else elements.setAttribute("data-highlight", "true");
+}
 
-	// setTimeout(function() { 
-	// 	if(elements instanceof Array) elements.forEach(function(e) { e.removeAttribute("data-highlight"); });
-	// 	else elements.removeAttribute("data-highlight");
-	// }, 1000);
-};
+function unhighlight(elements) {
+	if(elements instanceof Array) elements.forEach(function(e) { e.removeAttribute("data-highlight"); });
+	else elements.removeAttribute("data-highlight");
+}
 
 function displayHTML() {
 	textDom.innerHTML = shadowDom.children[0].stringify();

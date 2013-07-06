@@ -23,7 +23,7 @@ var onElementSelected, onElementCreated;
 		//Create the `create` instance
 		nodes.create = Voyeur.extendTags({}, function(tag) {
 			return Voyeur.create.bind({tag: tag, parents: nodes})()
-		})
+		});
 
 		/**
 		 * Use the current scope
@@ -41,6 +41,8 @@ var onElementSelected, onElementCreated;
 				}
 			}
 
+
+			if(onElementSelected) onElementSelected(nodes.root);
 			return nodes.root;
 		};
 
@@ -60,7 +62,11 @@ var onElementSelected, onElementCreated;
 				children = Array.prototype.slice.call(nodes.querySelectorAll(selector));
 			}
 
-			if(children.length) return Voyeur(children.length == 1 ? children[0] : children);
+			if(children.length) {
+				var e = Voyeur(children.length == 1 ? children[0] : children);
+				if(onElementSelected) onElementSelected(e);
+				return e;
+			}
 		};
 
 		/**
@@ -72,8 +78,14 @@ var onElementSelected, onElementCreated;
 		nodes.eq = function(u, v) {
 			if(nodes instanceof Array) {
 				var newNodes = nodes.slice(u, v || (u + 1));
-				return Voyeur(newNodes.length == 1 ? newNodes[0] : newNodes);
-			} else return nodes;
+				var e = Voyeur(newNodes.length == 1 ? newNodes[0] : newNodes);
+				if(onElementSelected) onElementSelected(e);
+				return e;
+			} else {
+
+				if(onElementSelected) onElementSelected(nodes);
+				return nodes;
+			}
 		};
 
 		return nodes;
@@ -100,17 +112,17 @@ var onElementSelected, onElementCreated;
 		}
 
 		for(var key in map) {
-			if(!node[key]) {
-				(function(key) { //Closure required
-					Object.defineProperty(node, key, {
-						get: function() {
-							var e = Voyeur(map[key].length == 1 ? map[key][0] : map[key]);
-							if(onElementSelected) onElementSelected(e);
-							return e;
-						}
-					});
-				})(key);
-			}
+			(function(key) { //Closure required
+				Object.defineProperty(node, key, {
+					get: function() {
+						var e = Voyeur(map[key].length == 1 ? map[key][0] : map[key]);
+						if(onElementSelected) onElementSelected(e);
+						return e;
+					},
+
+					configurable: true
+				});
+			})(key);
 		}
 	}
 
