@@ -89,15 +89,13 @@
 		}
 
 		for(var key in map) {
-			if(!node[key]) {
-				(function(key) { //Closure required
-					Object.defineProperty(node, key, {
-						get: function() {
-							return Voyeur(map[key].length == 1 ? map[key][0] : map[key]);
-						}
-					});
-				})(key);
-			}
+			(function(key) { //Closure required
+				Object.defineProperty(node, key, {
+					get: function() {
+						return Voyeur(map[key].length == 1 ? map[key][0] : map[key]);
+					}
+				});
+			})(key);
 		}
 	}
 
