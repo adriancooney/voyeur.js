@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Frame</title>
+    <style type="text/css">
+		#shadow-dom {
+			display: none;
+		}
+
+		#text-dom {
+			font-family: Monaco, monospace;
+			font-size: 14px;
+			color: #bf72c5;
+		}
+
+		.markup {
+			color: #6f729f;
+		}
+
+		.tag {
+			color: #777dc5;
+		}
+
+		.attr {
+			color: #479dac;
+		}
+
+		.string {
+			color: #9bb9bf;
+		}
+
+		.highlight {
+			-webkit-animation: flash 1s normal;
+		}
+
+		@-webkit-keyframes flash {
+			from { background: #f00; }
+			to { background: transparent; }
+		}
+    </style>
+</head>
+<body>
+<div id="shadow-dom">
+	<div>
+		<h1><em>Hello world!</em></h1>
+		<section id="empty"></section>
+		<section>
+			<ul>
+				<li>List Item</li>
+				<li>List Item</li>
+				<li>List Item</li>
+				<li>List Item</li>
+			</ul>
+		</section>
+	</div>
+</div>
+<div id="text-dom"></div>
+</body>
+<script src="Voyeur.modified.js" type="text/javascript"></script>
+<script src="HTML.stringify.js"></script>
+<script type="text/javascript">
+//Append in the text. I'm refraining from using Voyeur
+//due to the modified copy.
+
+var shadowDom = document.getElementById("shadow-dom"),
+	textDom = document.getElementById("text-dom");
+
+shadowDom.addEventListener("DOMSubtreeModified", displayHTML);
+displayHTML();
+
+onElementSelected = function(elements) {
+	console.log("ELEMENTS:", elements)
+	if(elements instanceof Array) elements.forEach(function(e) { e.setAttribute("data-highlight", "true"); });
+	else elements.setAttribute("data-highlight", "true");
+
+	// setTimeout(function() { 
+	// 	if(elements instanceof Array) elements.forEach(function(e) { e.removeAttribute("data-highlight"); });
+	// 	else elements.removeAttribute("data-highlight");
+	// }, 1000);
+};
+
+function displayHTML() {
+	textDom.innerHTML = shadowDom.children[0].stringify();
+}
+</script>
+</html>

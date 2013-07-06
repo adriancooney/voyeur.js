@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Page</title>
+    <title>Voyeur.js</title>
     <link rel="stylesheet" type="text/css" href="style/reset.css"/>
     <link rel="stylesheet" type="text/css" href="style/style.css"/>
 </head>
@@ -24,24 +24,27 @@
 });</textarea>
 				</div><div class="half">
 					<h3>Output</h3>
-					<div class="output"><pre></pre></div>
+					<div class="output"><iframe src="script/iframe.html"></iframe></div>
 				</div>
 			</div>
 			<div class="features columns">
 				<div class="third">
 					<h3>Transverse.the.DOM</h3>
-					<p></p>
+					<p>Voyeur allows you to transverse the DOM via the dot operator like you would any Javascript object. This makes for a streamlined and native experience like it always should have been.</p>
 				</div><div class="third">
-					<h3></h3>
-					<p></p>
+					<h3>Element creation</h3>
+					<p>One of the most useful components of Voyeur is it's element creation interface. Using some Javascript getter magic, you can create and append elements by simply naming and chaining them.</p>
 				</div><div class="third">
-					<h3></h3>
-					<p></p>
+					<h3>Always a node</h3>
+					<p>Whenever you're dealing with Voyeur, it's always a <code>node</code> or a <code>nodeList</code>. One of the main goals of Voyeur was to abstract as little as possible from the DOM and keep things clean.</p>
 				</div>
 			</div>
 			<hr>
 			<h3>How it works</h3>
-			<h3>Usage</h3>
+			<p>Voyeur works by extending all of a node's children via getters. It compiles and sorts them via their tags and adds them to the parent node. <strong>Voyeur does not maintain a separate, live updating DOM,</strong> that would make for terrible performance.</p>
+
+			<h3>API</h3>
+
 		</div>
 	</div>
 	<footer>

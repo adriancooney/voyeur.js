@@ -50,6 +50,11 @@ hr {
   height: 3px;
   margin: 18px;
 }
+p {
+  margin: 9px 18px;
+  line-height: 140%;
+  color: #d0b2d1;
+}
 header {
   height: 360px;
   background: url(../image/crissXcross.png);
@@ -71,6 +76,7 @@ header .overhead p {
   text-transform: uppercase;
   text-align: center;
   font-size: 28px;
+  color: #fff;
 }
 .banner {
   margin: 18px 0;
@@ -90,26 +96,33 @@ header .overhead p {
 }
 .banner .output {
   background: #251626;
-  width: 90%;
-  height: 184px;
-  padding: 12px;
+  width: 96%;
+  height: 208px;
   margin: 0 18px;
   border-radius: 8px;
+  padding: 0 6px;
 }
-.banner .output pre {
-  font-family: Monaco, monospace;
-  font-size: 14px;
+.banner .output iframe {
+  width: 100%;
+  height: inherit;
 }
 .features h3 {
   font-size: 22px;
   font-family: "Open Sans", Helvetica, Arial;
   text-transform: none;
+  margin-bottom: 9px;
 }
-footer {
+.features p {
+  margin: 9px 18px;
+  margin-right: 9px;
+  line-height: 140%;
+  color: #d0b2d1;
+}
+footer p {
   text-align: center;
   color: #603162;
   padding: 12px;
 }
-footer a {
+footer p a {
   color: #6f3236;
 }

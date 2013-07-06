@@ -63,6 +63,12 @@ hr {
 	margin: @margin;
 }
 
+p {
+	margin: (@margin/2) @margin;
+	line-height: 140%;
+	color: lighten(@purple, 60%);
+}
+
 header {
 	height: @header_height;
 	background: url(../image/crissXcross.png);
@@ -85,6 +91,7 @@ header {
 			text-transform: uppercase;
 			text-align: center;
 			font-size: 28px;
+			color: #fff;
 		}
 	}
 }
@@ -108,15 +115,15 @@ header {
 
 	.output {
 		background: darken(@purple, 4%);
-		width: 90%;
-		height: 184px;
-		padding: @padding;
+		width: 96%;
+		height: 184px + (@padding * 2);
 		margin: 0 @margin;
 		border-radius: @radius;
+		padding: 0 @padding/2;
 
-		pre {
-			font-family: Monaco, monospace;
-			font-size: 14px;
+		iframe {
+			width: 100%;
+			height: inherit
 		}
 	}
 }
@@ -126,15 +133,25 @@ header {
 		font-size: 22px;
 		font-family: "Open Sans", Helvetica, Arial;
 		text-transform: none;
+		margin-bottom: @margin/2;
+	}
+
+	p {
+		margin: (@margin/2) @margin;
+		margin-right: (@margin/2);
+		line-height: 140%;
+		color: lighten(@purple, 60%);
 	}
 }
 
 footer {
-	text-align: center;
-	color: @lightpurple;
-	padding: @padding;
+	p {	
+		text-align: center;
+		color: @lightpurple;
+		padding: @padding;
 
-	a {
-		color: @wine;
+		a {
+			color: @wine;
+		}
 	}
 }
