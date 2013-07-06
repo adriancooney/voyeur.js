@@ -22,6 +22,9 @@ body {
 .half {
   width: 50%;
 }
+.third {
+  width: 33%;
+}
 h2 {
   font-family: Palatino Linotype, Book Antiqua, Palatino, serif;
   letter-spacing: 8px;
@@ -96,6 +99,11 @@ header .overhead p {
 .banner .output pre {
   font-family: Monaco, monospace;
   font-size: 14px;
+}
+.features h3 {
+  font-size: 22px;
+  font-family: "Open Sans", Helvetica, Arial;
+  text-transform: none;
 }
 footer {
   text-align: center;
