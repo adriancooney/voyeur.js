@@ -50,6 +50,9 @@ hr {
   height: 3px;
   margin: 18px;
 }
+hr.blank {
+  opacity: 0;
+}
 p {
   margin: 9px 18px;
   line-height: 140%;
@@ -117,6 +120,36 @@ header .overhead p {
   margin-right: 9px;
   line-height: 140%;
   color: #d0b2d1;
+}
+.api article {
+  padding-bottom: 18px;
+}
+.api article h4 {
+  font-family: Monaco, monospace;
+  margin: 18px;
+  font-size: 22px;
+  color: #9b9fd4;
+}
+.api article h4 .returns {
+  font-style: italic;
+  font-size: 90%;
+  color: #535bb6;
+}
+.api article p em {
+  font-style: italic;
+}
+.api article .example {
+  background: #251626;
+  font-family: Monaco, monospace;
+  font-size: 14px;
+  margin: 18px 36px;
+  padding: 12px;
+  color: #777dc5;
+  line-height: 130%;
+  border-radius: 8px;
+}
+.api article .example .comment {
+  color: #6f3236;
 }
 footer p {
   text-align: center;

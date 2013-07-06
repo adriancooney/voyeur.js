@@ -12,6 +12,9 @@ document.addEventListener("DOMContentLoaded", function() {
 		timeout = setTimeout(executeInput, 1000);
 	});
 
+	//Syntax highlighting
+	Sintax.highlight();
+
 	setTimeout(Storyboard.resume, 3000);
 });
 

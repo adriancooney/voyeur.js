@@ -40,10 +40,29 @@
 			<hr>
 			<h3>How it works</h3>
 			<p>Voyeur works by extending all of a node's children via getters. It compiles and sorts them via their tags and adds them to the parent node. <strong>Voyeur does not maintain a separate, live updating DOM,</strong> that would make for terrible performance.</p>
-
+			<hr class="blank">
 			<h3>API</h3>
-
+			<div class="api">
+				<article>
+					<h4>Voyeur <span class="returns">document.body</span></h4>
+					<p>The global Voyeur is the document <span class="tag">body</span> and all element tags queried via the tag selector are descendants. It acts as the root Voyeur.</p>
+				</article>
+				<article>
+					<h4>Voyeur.create</h4>
+					<p>The root <code>Voyeur.create</code> object. Any valid HTML tag can be queried via the dot operator on this object and an element of that tag will be created. <em>Note: Elements created here will not be appended into the root. They are orphans. It's up to you to place them.</em></p>
+					<pre class="example">
+Voyeur.create.div; //Returns a div element
+Voyeur.create.div.h1; //Returns a h1  element with div parent
+Voyeur.create.div.h1.em; //etc
+</pre>
+				</article>
+				<article>
+					<h4>Voyeur.<span class="variable">tag</span> <span class="returns">HTMLElement|Array</span></h4>
+					<p>Voyeur allows you to access document nodes via their tag name. If </p>
+				</article>
+			</div>
 		</div>
+
 	</div>
 	<footer>
 		<div class="wrapper">
@@ -52,5 +71,6 @@
 	</footer>
 </body>
 <script src="Voyeur.js" type="text/javascript"></script>
+<script src="script/Sintax.js" type="text/javascript"></script>
 <script src="script/function.js" type="text/javascript"></script>
 </html>

@@ -63,6 +63,10 @@ hr {
 	margin: @margin;
 }
 
+hr.blank {
+	opacity: 0;
+}
+
 p {
 	margin: (@margin/2) @margin;
 	line-height: 140%;
@@ -141,6 +145,47 @@ header {
 		margin-right: (@margin/2);
 		line-height: 140%;
 		color: lighten(@purple, 60%);
+	}
+}
+
+.api {
+
+	article {
+		padding-bottom: @margin;
+
+		h4 {
+			font-family: Monaco, monospace;
+			margin: @margin;
+			font-size: 22px;
+			color: lighten(#777dc5, 10%);//lighten(#BB70BF, 10%);
+
+			.returns {
+				font-style: italic;
+				font-size: 90%;
+				color: darken(#777dc5, 10%); //#BB70BF;
+			}
+		}
+
+		p {
+			em {
+				font-style: italic;
+			}
+		}
+
+		.example {
+			background: darken(@purple, 4%);
+			font-family: Monaco, monospace;
+			font-size: 14px;
+			margin: @margin @margin*2;
+			padding: @padding;
+			color: #777dc5;
+			line-height: 130%;
+			border-radius: @radius;
+
+			.comment {
+				color: @wine;
+			}
+		}
 	}
 }
 
