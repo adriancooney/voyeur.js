@@ -38,15 +38,8 @@ var content = Voyeur.create.div.class("content")
 
 Voyuer.div.appendChild(content);
 ```
-
-### Concept
-The goal of Voyeur is to make transversing the DOM as simple and as natural as possible. Voyeur uses some fancy 'getter' techniques to allow for dot operator selection of a node's children.
-
-### API
-#### Voyeur
-
-#### Voyeur( _&lt;selector&gt;_ )
-
-#### Voyeur.create._&lt;tag name&gt;_
+## Todo
+* Initilize Voyeur after the DOMContentLoaded
+* Make Voyeur handle the DOMSubtreeModified event.
 
 License: _MIT_
