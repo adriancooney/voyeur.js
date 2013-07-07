@@ -42,6 +42,29 @@ var content = Voyeur.create.div
 Voyeur.div.appendChild(content);
 ```
 
+## Publishing to bower.io registry
+
+```shell
+$ # You need grunt to uglify, jshint, bumpup version, release (= tagging new version)
+$ npm install grunt-cli
+
+$ # check and minify Voyeur.js
+$ grunt
+
+$ # bump up version (patch version) 
+$ grunt bumpup
+$ # or bump up version (minor version)
+$ grunt bumpup:minor
+
+$ # commit your changes
+$ git commit -a "bumpup to v0.2.x"
+$ git push
+
+# release: tagging, commit, push
+$ grunt release
+
+```
+
 ## Todo
 * Initilize Voyeur after the DOMContentLoaded
 * Make Voyeur handle the DOMSubtreeModified event.
