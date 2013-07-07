@@ -66,6 +66,10 @@ hr.blank {
 	opacity: 0;
 }
 
+a {
+	color: lighten(@wine, 20%);
+}
+
 p {
 	margin: (@margin/2) @margin;
 	line-height: 140%;
@@ -97,13 +101,39 @@ header {
 		padding: @padding * 2;
 	}
 
+	h5 {
+		float: right;
+		margin: @margin*2 @margin;
+
+
+		a {
+			color: #fff;
+			text-decoration: none;
+		}
+
+		a:hover {
+			text-decoration: underline;
+		}
+	}
+
 	.overhead {
+		h3 {
+			font-size: 50px;
+			text-transform: none;
+			font-family: Monaco, monospace;
+			text-align: center;
+			width: 200px;
+			margin: 0 auto;
+			margin-top: -20px;
+		}
+
 		p {
+			margin-top: 30px;
 			font-family: "Montserrat", sans-serif;
 			font-weight: 700;
 			text-transform: uppercase;
 			text-align: center;
-			font-size: 28px;
+			font-size: 26px;
 			color: #fff;
 		}
 	}
@@ -239,11 +269,28 @@ header {
 	}
 }
 
+.faq {
+	p {
+		margin-top: 4px;
+		margin-bottom: 28px;
+	}
+
+	.question {
+		font-weight: bold;
+		margin-bottom: 4px;
+		font-size: 110%;
+	}
+}
+
 footer {
+	background: url(../image/crissXcross.png);
+	border-top: 12px solid @black;
+
 	p {	
 		text-align: center;
 		color: @lightpurple;
-		padding: @padding;
+		padding: @padding * 4;
+		margin: 0;
 
 		a {
 			color: @wine;

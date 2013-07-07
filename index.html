@@ -8,9 +8,11 @@
 <body>
 	<header>
 		<div class="wrapper">
+			<h5><a href="http://github.com/dunxrion/voyeur.js">Hosted on Github</a></h5>
 			<h1>Voyeur.js</h1>
 			<div class="overhead">
-				<p>The way DOM transversal and creation was mean't to be.</p>
+				<h3><img src="image/keyhole.png" /></h3>
+				<p>Taking a closer look at the document's body.</p>
 			</div>
 		</div>
 	</header>
@@ -33,14 +35,31 @@
 					<h3>Element creation</h3>
 					<p>One of the most useful components of Voyeur is it's element creation interface. Using some Javascript getter magic, you can create and append elements by simply naming and chaining them.</p>
 				</div><div class="third">
-					<h3>Always a node</h3>
+					<h3>Always an element</h3>
 					<p>Whenever you're dealing with Voyeur, it's always a <code>node</code> or an <code>array of nodes</code>. One of the main goals of Voyeur was to abstract as little as possible from the DOM and keep things clean.</p>
 				</div>
 			</div>
 			<hr>
-			<h2>How it works</h2>
-			<p>Voyeur works by extending all of a node's children via getters. It compiles and sorts them via their tags and adds them to the parent node. <strong>Voyeur does not maintain a separate, live updating DOM,</strong> that would make for terrible performance.</p>
-			<hr class="blank">
+			<h2>FAQ</h2>
+			<div class="faq">
+				<p class="question">Which browsers does Voyeur support?</p>
+				<p>Voyeur supports all major browsers.</p>
+				<p class="question">How does it work?</p>
+				<p>Voyeur works by utilizing object getter functions to expose an elements children via their tag names on the element.</p>
+				<p class="question">What?! You expose every element's children?</p>
+				<p>Nope! An element's children is only exposed when it's returned so only the elements <em>used</em> will be Voyeur'fied.</p>
+				<p class="question">Don't you pollute the element with tons of tags?</p>
+				<p>You'd be surprised at how little overhead there is left on the elements. When used correctly, Voyeur's footprint on an element can be reduced significantly (and it's not very hard to use it right).</p>
+				<p class="question">Why should I use this instead of, say, jQuery?</p>
+				<p>Personally, I really dislike <em>huge</em> libraries because I never use half of the great tools provided. Voyeur does one job and it does it well, in a friendly way too which is always a plus.</p>
+				<p class="question">Where can I get code?</p>
+				<p>Voyeur is <a href="http://github.com/duxrion/voyeur.js">hosted on Github</a>. Feel free to fork and create a pull request!</p>
+				<p class="question">I have a suggestion, where do I put it?</p>
+				<p>Awesome! I'd love to hear it. You can <a href="mailto:cooney.adrian@gmail.com">email me</a>, <a href="http://twitter.com/dunxrion">tweet it to me</a> or <a href="http://github.com/dunxrion/voyeur.js">create an issue on Github.</a></p>
+				<p class="question">What's with all the purple and sexual connotations?</p>
+				<p>Voyeur takes a deep, perverse even, look into DOM..? Actually, that's a little weird isn't it.</p>
+			</div>
+			<hr>
 			<h2>API</h2>
 			<div class="api">
 				<article>
@@ -128,7 +147,7 @@ Voyeur.create.ul.li.mult(10).eq(5).innerHTML = "The 5th item.";
 				</article>
 				<article>
 					<h4>Voyeur.create.special( <span class="variable">tag</span> ) <span class="returns">HTMLElement</span></h4>
-					<p>Due to some namespace clashes, some tagnames had to be moved to a function. These tag names include: <code>script</code> and <code>style</code>.</p>
+					<p>Due to some namespace clashes, some tag names had to be moved to a function. These tag names include: <code>script</code> and <code>style</code>.</p>
 					<pre class="example">
 Voyeur.create.special("style"); //Returns style element
 </pre>

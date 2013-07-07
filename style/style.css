@@ -52,6 +52,9 @@ hr {
 hr.blank {
   opacity: 0;
 }
+a {
+  color: #b2555b;
+}
 p {
   margin: 9px 18px;
   line-height: 140%;
@@ -81,12 +84,33 @@ header h1 {
   font-size: 40px;
   padding: 24px;
 }
+header h5 {
+  float: right;
+  margin: 36px 18px;
+}
+header h5 a {
+  color: #fff;
+  text-decoration: none;
+}
+header h5 a:hover {
+  text-decoration: underline;
+}
+header .overhead h3 {
+  font-size: 50px;
+  text-transform: none;
+  font-family: Monaco, monospace;
+  text-align: center;
+  width: 200px;
+  margin: 0 auto;
+  margin-top: -20px;
+}
 header .overhead p {
+  margin-top: 30px;
   font-family: "Montserrat", sans-serif;
   font-weight: 700;
   text-transform: uppercase;
   text-align: center;
-  font-size: 28px;
+  font-size: 26px;
   color: #fff;
 }
 .banner {
@@ -190,10 +214,24 @@ header .overhead p {
 .api article .example .tab {
   color: #3f2640;
 }
+.faq p {
+  margin-top: 4px;
+  margin-bottom: 28px;
+}
+.faq .question {
+  font-weight: bold;
+  margin-bottom: 4px;
+  font-size: 110%;
+}
+footer {
+  background: url(../image/crissXcross.png);
+  border-top: 12px solid #161616;
+}
 footer p {
   text-align: center;
   color: #603162;
-  padding: 12px;
+  padding: 48px;
+  margin: 0;
 }
 footer p a {
   color: #6f3236;
