@@ -47,9 +47,13 @@ Install via bower (courtesy of @pid)
 
 	bower install Voyeur
 	
+Include the script somewhere on the page.
+
+```html
+<script src="text/javascript" src="Voyeur.min.js"></script>
+```
 
 ## Todo
-* Initilize Voyeur after the DOMContentLoaded
 * Make Voyeur handle the DOMSubtreeModified event.
 
 ## License
