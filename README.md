@@ -1,6 +1,5 @@
 # Voyeur
-### Transversing the DOM just became a bit more naughty
-Voyeur exposes the DOM for transversing via the dot operator in a natural, intuitive way.
+### [http://dunxrion.github.io/voyeur.js](http://dunxrion.github.io/voyeur.js)
 
 ```html
 <body>
@@ -38,6 +37,7 @@ var content = Voyeur.create.div.class("content")
 
 Voyuer.div.appendChild(content);
 ```
+
 ## Todo
 * Initilize Voyeur after the DOMContentLoaded
 * Make Voyeur handle the DOMSubtreeModified event.
