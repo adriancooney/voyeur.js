@@ -254,14 +254,6 @@
 			})();
 		});
 
-<<<<<<< HEAD
-	//Special create function 
-	window.Voyeur.create.special = function(tag) {
-		return Voyeur.create.bind({
-			tag: tag
-		})();
-	};
-=======
 		//Special create function 
 		window.Voyeur.create.special = function(tag) {
 			return Voyeur.create.bind({
@@ -269,5 +261,4 @@
 			})();
 		};
 	});
->>>>>>> master
 })();
