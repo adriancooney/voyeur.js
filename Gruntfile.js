@@ -26,6 +26,41 @@ module.exports = function(grunt) {
             }
         },
         jshint: {
+            options: {
+                "curly": true,
+                "strict": false,
+                "onevar": false,
+                "eqeqeq": true,
+                "jquery": true,
+                "indent": 4,
+                "laxcomma": true,
+                "laxbreak": true,
+                "undef": true,
+                "unused": true,
+                "latedef": true,
+                "immed": true,
+                "newcap": false,
+                "noarg": true,
+                "sub": true,
+                "boss": true,
+                "eqnull": true,
+                "node": true,
+                "browser": true,
+                "plusplus": false,
+                "smarttabs": true,
+                "evil": true,
+                "globals": {
+                    "global": true,
+                    "process": true,
+                    "console": true,
+                    "Buffer": true,
+                    "require": true,
+                    "__filename": true,
+                    "__dirname": true,
+                    "module": true,
+                    "exports": true
+                }
+            },
             src: ['Gruntfile.js', '<%= pkg.name %>.js']
         }
     });
@@ -34,7 +69,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-release');
     grunt.loadNpmTasks('grunt-bumpup');
-    
+
     // Default task(s).
     grunt.registerTask('default', ['uglify', 'jshint']);
 
