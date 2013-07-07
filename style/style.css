@@ -26,12 +26,11 @@ body {
   width: 33%;
 }
 h2 {
-  font-family: Palatino Linotype, Book Antiqua, Palatino, serif;
-  letter-spacing: 8px;
-  text-transform: uppercase;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
   font-size: 28px;
-  padding: 12px;
-  border-bottom: 1px solid #513153;
+  text-transform: uppercase;
+  margin: 9px 18px;
 }
 h3 {
   /*
@@ -57,6 +56,15 @@ p {
   margin: 9px 18px;
   line-height: 140%;
   color: #d0b2d1;
+}
+code {
+  background: #251626;
+  border: 1px solid #452946;
+  padding: 1px 6px;
+  font-family: Monaco, sans-serif;
+  font-size: 80%;
+  border-radius: 4px;
+  color: #905793;
 }
 header {
   height: 360px;
@@ -135,6 +143,25 @@ header .overhead p {
   font-size: 90%;
   color: #535bb6;
 }
+.api article h4 .variable {
+  color: #777dc5;
+  font-weight: bold;
+}
+.api article h4 .variable em {
+  font-style: italic;
+}
+.api article h4 .variable:before {
+  content: '<';
+}
+.api article h4 .variable:after {
+  content: '>';
+}
+.api article h4 .optional:before {
+  content: '[';
+}
+.api article h4 .optional:after {
+  content: ']';
+}
 .api article p em {
   font-style: italic;
 }
@@ -150,6 +177,18 @@ header .overhead p {
 }
 .api article .example .comment {
   color: #6f3236;
+}
+.api article .example .comment * {
+  color: #6f3236 !important;
+}
+.api article .example .quote {
+  color: #cd355b;
+}
+.api article .example .keyword {
+  color: #577ec4;
+}
+.api article .example .tab {
+  color: #3f2640;
 }
 footer p {
   text-align: center;

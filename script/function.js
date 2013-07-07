@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	//Syntax highlighting
 	Sintax.highlight();
 
-	setTimeout(Storyboard.resume, 3000);
+	setTimeout(Storyboard.resume, 1000);
 });
 
 function executeInput() {

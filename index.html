@@ -34,31 +34,115 @@
 					<p>One of the most useful components of Voyeur is it's element creation interface. Using some Javascript getter magic, you can create and append elements by simply naming and chaining them.</p>
 				</div><div class="third">
 					<h3>Always a node</h3>
-					<p>Whenever you're dealing with Voyeur, it's always a <code>node</code> or a <code>nodeList</code>. One of the main goals of Voyeur was to abstract as little as possible from the DOM and keep things clean.</p>
+					<p>Whenever you're dealing with Voyeur, it's always a <code>node</code> or an <code>array of nodes</code>. One of the main goals of Voyeur was to abstract as little as possible from the DOM and keep things clean.</p>
 				</div>
 			</div>
 			<hr>
-			<h3>How it works</h3>
+			<h2>How it works</h2>
 			<p>Voyeur works by extending all of a node's children via getters. It compiles and sorts them via their tags and adds them to the parent node. <strong>Voyeur does not maintain a separate, live updating DOM,</strong> that would make for terrible performance.</p>
 			<hr class="blank">
-			<h3>API</h3>
+			<h2>API</h2>
 			<div class="api">
 				<article>
 					<h4>Voyeur <span class="returns">document.body</span></h4>
-					<p>The global Voyeur is the document <span class="tag">body</span> and all element tags queried via the tag selector are descendants. It acts as the root Voyeur.</p>
+					<p>The global Voyeur is the document <span class="tag">body</span> and all element tags queried via the dot operator are descendants. It acts as the root Voyeur.</p>
 				</article>
 				<article>
-					<h4>Voyeur.create</h4>
+					<h4>Voyeur.<span class="variable">tag..</span> <span class="returns">HTMLElement|Array</span></h4>
+					<p>Voyeur allows you to access document nodes via their tag name. If multiple elements of the same tag list exist, an native <em>array</em> of elements is returned otherwise a <code>HTMLElement</code> (or <em>node</em>) is returned. Chaining is acceptable and encouraged.</p>
+					<pre class="example">
+Voyeur.div.h1; //body>div>h1. Returns h1 element.
+Voyeur.div.h1.innerHTML = "wobblewobble"; //..
+</pre>
+				</article>
+				<article>
+					<h4>Voyeur.find( <span class="variable">selector</span> ) <span class="returns">HTMLElement|Array</span></h4>
+					<p><code>Voyeur.find</code> acts as a proxy for <code>querySelectorAll</code> and returns a <em>Voyeur'ified</em> node or array of nodes.</p>
+					<pre class="example">
+Voyeur.find("#example"); //Single node returned
+Voyeur.find(".example"); //Array of nodes returned if more than one, otherwise a node
+Voyeur.find("#example").h1.em; //Chaining acceptable
+</pre>
+				</article>
+				<article>
+					<h4>Voyeur.<span class="variable">tag..</span>.find( <span class="variable">selector</span> ) <span class="returns">HTMLElement|Array</span></h4>
+					<p>Scoped <code>find</code>'s are also acceptable.</p>
+					<pre class="example">
+Voyeur.div.find(".example"); //Scoped query selector all
+</pre>
+				</article>
+				<article>
+					<h4>Voyeur.<span class="variable">tag..</span>.use( <span class="variable optional">callback(<em>element</em>)</span> ) <span class="returns">Root HTMLElement</span></h4>
+					<p>Use a the current node or array of nodes within a closure. Returns the root node.</p>
+					<pre class="example">
+Voyeur.div.ul.li; //Returns a list of list items
+Voyeur.div.ul.li.use(); //Returns div element
+Voyeur.div.ul.li.use(function(li, i) {
+	//Loop over the list items
+	li.textContext = "List item #" + i;
+});
+
+Voyeur.div.ul.use(function(ul) {
+	ul.style.background = "blue";
+
+	//Continue using the ul
+	ul.li; //..
+});
+</pre>
+				</article>
+				<article>
+					<h4>Voyeur.<span class="variable">tag..</span>.eq( <span class="variable">begin</span> <span class="variable optional">, end</span> ) <span class="returns">HTMLElement|Array</span></h4>
+					<p>When an array of elements is returned, <code>eq</code> allows you to operate on a single element in a list or a range of elements.</p>
+					<pre class="example">
+Voyeur.ul.li; //List of 10 li elements
+Voyeur.ul.li.eq(3).innerText = "Fourth li element!";
+
+Voyeur.ul.li.eq(3, 9).use(function(li, i) {
+	li.create.em.innerText = "Emphasized text!";
+});
+
+//Alternatively use forEach, remember its a native array!
+Voyeur.ul.li.eq(3, 9).forEach(function() { ... });
+</pre>
+				</article>
+				<article>
+					<h4>Voyeur.create.<span class="variable">tag..</span> <span class="returns">HTMLElement|Array</span></h4>
 					<p>The root <code>Voyeur.create</code> object. Any valid HTML tag can be queried via the dot operator on this object and an element of that tag will be created. <em>Note: Elements created here will not be appended into the root. They are orphans. It's up to you to place them.</em></p>
 					<pre class="example">
 Voyeur.create.div; //Returns a div element
-Voyeur.create.div.h1; //Returns a h1  element with div parent
+Voyeur.create.div.h1; //Returns a h1 element with div parent
 Voyeur.create.div.h1.em; //etc
 </pre>
 				</article>
 				<article>
-					<h4>Voyeur.<span class="variable">tag</span> <span class="returns">HTMLElement|Array</span></h4>
-					<p>Voyeur allows you to access document nodes via their tag name. If </p>
+					<h4>Voyeur.create.<span class="variable">tag..</span>.mult( <span class="variable">factor</span> ) <span class="returns">Array</span></h4>
+					<p>During the creationg process you may want more than one element. <code>mult</code> allows you to multiply the current node by a factor.</p>
+					<pre class="example">
+Voyeur.create.ul.li.mult(10).use(function(li, i) {
+	li.innerHTML = "Created list items!";
+});
+
+//Use in conjuction with eq
+Voyeur.create.ul.li.mult(10).eq(5).innerHTML = "The 5th item.";
+</pre>
+				</article>
+				<article>
+					<h4>Voyeur.create.special( <span class="variable">tag</span> ) <span class="returns">HTMLElement</span></h4>
+					<p>Due to some namespace clashes, some tagnames had to be moved to a function. These tag names include: <code>script</code> and <code>style</code>.</p>
+					<pre class="example">
+Voyeur.create.special("style"); //Returns style element
+</pre>
+				</article>
+				<article>
+					<h4>Voyeur.<span class="variable">tag..</span>.create.<span class="variable">tag..</span> <span class="returns">HTMLElement|Array</span></h4>
+					<p>Elements can also be created within a scope. Whenever <code>create</code> is used on an element, any elements created are appended into this element as a parent. All of the above functions apply.</p>
+					<pre class="example">
+Voyeur.div.create.h1.innerHTML = "Hello world!"; //Create a h1 and appends it into the div
+
+Voyeur.div.create.ul.li.mult(10).use(function(li, i) {
+	li.innerHTML = "wtf is with the li elements";
+});
+</pre>
 				</article>
 			</div>
 		</div>

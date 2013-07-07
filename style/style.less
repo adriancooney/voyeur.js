@@ -37,12 +37,11 @@ body {
 .third { width: 33%; }
 
 h2 {
-	font-family: Palatino Linotype, Book Antiqua, Palatino, serif;
-	letter-spacing: 8px;
-	text-transform: uppercase;
+	font-family: "Montserrat", sans-serif;
+	font-weight: 400;
 	font-size: 28px;
-	padding: @padding;
-	border-bottom: 1px solid lighten(@purple, 10%);
+	text-transform: uppercase;
+	margin: @margin/2 @margin;
 }
 
 h3 {
@@ -71,6 +70,16 @@ p {
 	margin: (@margin/2) @margin;
 	line-height: 140%;
 	color: lighten(@purple, 60%);
+}
+
+code {
+	background: darken(@purple, 4%);
+	border: 1px solid lighten(@purple, 6%);
+	padding: 1px 6px;
+	font-family: Monaco, sans-serif;
+	font-size: 80%;
+	border-radius: @radius/2;
+	color: lighten(@purple, 30%);
 }
 
 header {
@@ -164,6 +173,31 @@ header {
 				font-size: 90%;
 				color: darken(#777dc5, 10%); //#BB70BF;
 			}
+
+			.variable {
+				color: #777dc5;
+				font-weight: bold;
+
+				em {
+					font-style: italic;
+				}
+			}
+
+			.variable:before {
+				content: '<';
+			}
+
+			.variable:after {
+				content: '>';
+			}
+
+			.optional:before {
+				content: '[';
+			}
+
+			.optional:after {
+				content: ']';
+			}
 		}
 
 		p {
@@ -184,6 +218,22 @@ header {
 
 			.comment {
 				color: @wine;
+
+				* {
+					color: @wine !important;
+				}
+			}
+
+			.quote {
+				color: #cd355b;
+			}
+
+			.keyword {
+				color: #577ec4;
+			}
+
+			.tab {
+				color: lighten(@purple, 4%);
 			}
 		}
 	}
