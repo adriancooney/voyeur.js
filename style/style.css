@@ -25,6 +25,12 @@ body {
 .third {
   width: 33%;
 }
+.fifth {
+  width: 20%;
+}
+.fourfifths {
+  width: 80%;
+}
 h2 {
   font-family: "Montserrat", sans-serif;
   font-weight: 400;
@@ -112,6 +118,12 @@ header .overhead p {
   text-align: center;
   font-size: 26px;
   color: #fff;
+}
+.info {
+  text-align: center;
+}
+.info p {
+  margin: 26px 0;
 }
 .banner {
   margin: 18px 0;
