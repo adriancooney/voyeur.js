@@ -75,3 +75,6 @@ $ grunt release
 ## Todo
 * Initilize Voyeur after the DOMContentLoaded
 * Make Voyeur handle the DOMSubtreeModified event.
+
+## License
+[MIT License](https://raw.github.com/dunxrion/voyeur.js/master/LICENCE)
