@@ -1,5 +1,6 @@
 # Voyeur
 ### [http://dunxrion.github.io/voyeur.js](http://dunxrion.github.io/voyeur.js)
+Voyeur is a tiny (1.2kb) Javascript library that lets you transverse and manipulate the DOM the way it should have been. See [here](http://dunxrion.github.io/voyeur.js) for a demo, more information and documentation.
 
 ```html
 <body>
@@ -23,19 +24,22 @@
 ```js
 //Lets get the title link
 Voyeur.div.header.h1.em.a.href = "http://google.com"
-Voyeur("#title").em.a.innerText = "New title!";
+Voyeur.find("#title").em.a.innerText = "New title!";
 
 //Let's get those navigation items
-Voyeur.div.section.ul.li.forEach(function(li, i) {
+Voyeur.div.section.ul.li.use(function(li, i) {
 	li.a.innerText = "Link #" + i;
 });
-Voyeur.div.section.ul.li[3].classList.add("Highlighted!");
+
+Voyeur.div.section.ul.li.eq(3).classList.add("Highlighted!");
 
 //How about we create some content
-var content = Voyeur.create.div.class("content")
-	.section.mult(5).p.em.text("Hello world!");
+var content = Voyeur.create.div
+	.section.mult(5).p.em.use(function(em) {
+		em.textContext = "Hello world!";
+	});
 
-Voyuer.div.appendChild(content);
+Voyeur.div.appendChild(content);
 ```
 
 ## Todo
