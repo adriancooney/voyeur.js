@@ -47,6 +47,8 @@ Voyeur.div.appendChild(content);
 ```shell
 $ # You need grunt to uglify, jshint, bumpup version, release (= tagging new version)
 $ npm install grunt-cli
+$ # Install grunt tasks modules
+$ npm install
 
 $ # check and minify Voyeur.js
 $ grunt
