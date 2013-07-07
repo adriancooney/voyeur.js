@@ -90,7 +90,6 @@ displayHTML();
 
 var timeout;
 onElementSelected = function(elements) {
-	console.log(elements);
 	if(timeout) clearTimeout(timeout);
 	timeout = setTimeout(function() { 
 		highlight(elements);
