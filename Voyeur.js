@@ -1,3 +1,4 @@
+/* jshint newcap: false */
 (function() {
 	"use strict";
 
@@ -7,12 +8,18 @@
 	 * @return {Voyeur} Voyeur extended Node
 	 */
 	var Voyeur = function(nodes) {
-		if(nodes instanceof HTMLElement) Voyeur.extendChildren(nodes); //Single node so extend it's children
+		if(nodes instanceof HTMLElement) {
+			//Single node so extend it's children
+			Voyeur.extendChildren(nodes);
+		}
 
 		//Create the `create` instance
 		nodes.create = Voyeur.extendTags({}, function(tag) {
-			return Voyeur.create.bind({tag: tag, parents: nodes})()
-		})
+			return Voyeur.create.bind({
+				tag: tag,
+				parents: nodes
+			})();
+		});
 
 		/**
 		 * Use the current scope
@@ -24,7 +31,7 @@
 				if(nodes instanceof Array) {
 					nodes.forEach(function(elem, i) {
 						fn.call(window, Voyeur(elem), i);
-					})
+					});
 				} else {
 					fn.call(window, nodes);
 				}
@@ -49,7 +56,9 @@
 				children = Array.prototype.slice.call(nodes.querySelectorAll(selector));
 			}
 
-			if(children.length) return Voyeur(children.length == 1 ? children[0] : children);
+			if(children.length) {
+				return Voyeur(children.length === 1 ? children[0] : children);
+			}
 		};
 
 		/**
@@ -61,8 +70,10 @@
 		nodes.eq = function(u, v) {
 			if(nodes instanceof Array) {
 				var newNodes = nodes.slice(u, v || (u + 1));
-				return Voyeur(newNodes.length == 1 ? newNodes[0] : newNodes);
-			} else return nodes;
+				return Voyeur(newNodes.length === 1 ? newNodes[0] : newNodes);
+			} else {
+				return nodes;
+			}
 		};
 
 		return nodes;
@@ -80,26 +91,29 @@
 		//The tag map
 		var map = {};
 
-		for (var i = children.length - 1; i >= 0; i--) {
+		for(var i = children.length - 1; i >= 0; i--) {
 			var child = children[i],
 				tag = child.tagName.toLowerCase();
 
-			if(!map[tag]) map[tag] = [];
+			if(!map[tag]) {
+				map[tag] = [];
+			}
 			map[tag].push(child);
 		}
 
+		/* jshint loopfunc: true */
 		for(var key in map) {
 			(function(key) { //Closure required
 				Object.defineProperty(node, key, {
 					get: function() {
-						return Voyeur(map[key].length == 1 ? map[key][0] : map[key]);
+						return Voyeur(map[key].length === 1 ? map[key][0] : map[key]);
 					},
 
 					configurable: true
 				});
 			})(key);
 		}
-	}
+	};
 
 	/**
 	 * Voyeur.create recursive function
@@ -118,7 +132,7 @@
 				root: self.root,
 				parents: self,
 				tag: tag
-			})()
+			})();
 		});
 
 		self.use = function(fn) {
@@ -127,7 +141,7 @@
 					self.forEach(function(elem, i) {
 						elem = Voyeur(elem);
 						fn.call(elem, elem, i);
-					})
+					});
 				} else {
 					var vSelf = Voyeur(self);
 					fn.call(vSelf, vSelf);
@@ -159,7 +173,7 @@
 				parents: self,
 				tag: tag
 			})();
-		}
+		};
 
 		return self;
 
@@ -172,6 +186,12 @@
 	 * @return {Array|HTMLElement}         The array of new parents or element
 	 */
 	Voyeur.createElement = function(parents, tag) {
+
+		// helper
+		function create() {
+			return document.createElement(tag);
+		}
+
 		if(parents) {
 			if(parents instanceof Array) {
 				var newParents = [];
@@ -191,9 +211,6 @@
 			return create();
 		}
 
-		function create() {
-			return document.createElement(tag);
-		}
 	};
 
 	Voyeur.nodes = "a,abbr,acronym,address,applet,area,article,aside,audio,b,base,basefont,bdi,bdo,bgsound,big,blink,blockquote,br,button,canvas,caption,center,cite,code,col,colgroup,data,datalist,dd,del,details,dfn,div,dl,dt,em,embed,fieldset,figcaption,figure,font,footer,form,frame,frameset,h1,h2,h3,h4,h5,h6,header,hgroup,hr,i,iframe,img,input,ins,isindex,kbd,keygen,label,legend,li,link,listing,main,map,mark,marquee,menu,menuitem,meta,meter,nav,nobr,noframes,noscript,object,ol,optgroup,option,output,p,param,plaintext,pre,progress,q,rp,rt,ruby,s,samp,section,select,small,source,spacer,span,strike,strong,sub,summary,sup,table,tbody,td,textarea,tfoot,th,thead,time,tr,track,tt,u,ul,var,video,wbr,xmp".split(",");
@@ -226,18 +243,31 @@
 		return obj;
 	};
 
-	//Initilize Voyeur on the document
-	window.Voyeur = Voyeur(document.body);
+	document.addEventListener("DOMContentLoaded", function() {
+		//Initilize Voyeur on the document
+		window.Voyeur = Voyeur(document.body);
 
-	//Create for the root Voyeur
-	window.Voyeur.create = Voyeur.extendTags({}, function(tag) {
-		return Voyeur.create.bind({tag: tag})()
-	});
+		//Create for the root Voyeur
+		window.Voyeur.create = Voyeur.extendTags({}, function(tag) {
+			return Voyeur.create.bind({
+				tag: tag
+			})();
+		});
 
+<<<<<<< HEAD
 	//Special create function 
 	window.Voyeur.create.special = function(tag) {
 		return Voyeur.create.bind({
 			tag: tag
 		})();
 	};
+=======
+		//Special create function 
+		window.Voyeur.create.special = function(tag) {
+			return Voyeur.create.bind({
+				tag: tag
+			})();
+		};
+	});
+>>>>>>> master
 })();
