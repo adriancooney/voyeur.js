@@ -46,31 +46,7 @@ Voyeur.div.appendChild(content);
 Install via bower (courtesy of @pid)
 
 	bower install Voyeur
-
-## Publishing to bower.io registry
-
-```shell
-$ # You need grunt to uglify, jshint, bumpup version, release (= tagging new version)
-$ npm install grunt-cli
-$ # Install grunt tasks modules
-$ npm install
-
-$ # check and minify Voyeur.js
-$ grunt
-
-$ # bump up version (patch version) 
-$ grunt bumpup
-$ # or bump up version (minor version)
-$ grunt bumpup:minor
-
-$ # commit your changes
-$ git commit -a "bumpup to v0.2.x"
-$ git push
-
-# release: tagging, commit, push
-$ grunt release
-
-```
+	
 
 ## Todo
 * Initilize Voyeur after the DOMContentLoaded
