@@ -30,16 +30,17 @@
 			if(fn) {
 				if(nodes instanceof Array) {
 					nodes.forEach(function(elem, i) {
-						fn.call(window, Voyeur(elem), i);
+						var elem = Voyeur(elem);
+						fn.call(elem, elem, i);
 					});
 				} else {
-					fn.call(window, nodes);
+					fn.call(nodes, nodes);
 				}
 			}
 
 			return nodes.root;
 		};
-
+		
 		/**
 		 * Find via selector inside the current scope
 		 * @param  {String} selector The selector
