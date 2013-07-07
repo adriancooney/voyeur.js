@@ -8,7 +8,7 @@
 	 * @return {Voyeur} Voyeur extended Node
 	 */
 	var Voyeur = function(nodes) {
-		if (nodes instanceof HTMLElement) {
+		if(nodes instanceof HTMLElement) {
 			//Single node so extend it's children
 			Voyeur.extendChildren(nodes);
 		}
@@ -27,8 +27,8 @@
 		 * @return {Voyeur}      The root node
 		 */
 		nodes.use = function(fn) {
-			if (fn) {
-				if (nodes instanceof Array) {
+			if(fn) {
+				if(nodes instanceof Array) {
 					nodes.forEach(function(elem, i) {
 						fn.call(window, Voyeur(elem), i);
 					});
@@ -47,7 +47,7 @@
 		 */
 		nodes.find = function(selector) {
 			var children;
-			if (nodes instanceof Array) {
+			if(nodes instanceof Array) {
 				children = [];
 				nodes.forEach(function(node) {
 					children = children.concat(Array.prototype.slice.call(node.querySelectorAll(selector)));
@@ -56,7 +56,7 @@
 				children = Array.prototype.slice.call(nodes.querySelectorAll(selector));
 			}
 
-			if (children.length) {
+			if(children.length) {
 				return Voyeur(children.length === 1 ? children[0] : children);
 			}
 		};
@@ -68,7 +68,7 @@
 		 * @return {Voyeur}   The selected nodes
 		 */
 		nodes.eq = function(u, v) {
-			if (nodes instanceof Array) {
+			if(nodes instanceof Array) {
 				var newNodes = nodes.slice(u, v || (u + 1));
 				return Voyeur(newNodes.length === 1 ? newNodes[0] : newNodes);
 			} else {
@@ -91,18 +91,18 @@
 		//The tag map
 		var map = {};
 
-		for (var i = children.length - 1; i >= 0; i--) {
+		for(var i = children.length - 1; i >= 0; i--) {
 			var child = children[i],
 				tag = child.tagName.toLowerCase();
 
-			if (!map[tag]) {
+			if(!map[tag]) {
 				map[tag] = [];
 			}
 			map[tag].push(child);
 		}
 
 		/* jshint loopfunc: true */
-		for (var key in map) {
+		for(var key in map) {
 			(function(key) { //Closure required
 				Object.defineProperty(node, key, {
 					get: function() {
@@ -136,8 +136,8 @@
 		});
 
 		self.use = function(fn) {
-			if (fn) {
-				if (self instanceof Array) {
+			if(fn) {
+				if(self instanceof Array) {
 					self.forEach(function(elem, i) {
 						elem = Voyeur(elem);
 						fn.call(elem, elem, i);
@@ -158,7 +158,7 @@
 			self.parentNode.removeChild(self);
 
 			var elems = [];
-			for (var i = 0; i < factor; i++) {
+			for(var i = 0; i < factor; i++) {
 				var elem = Voyeur.createElement(self.parents, self.tagName.toLowerCase());
 				elems.push(elem);
 			}
@@ -192,8 +192,8 @@
 			return document.createElement(tag);
 		}
 
-		if (parents) {
-			if (parents instanceof Array) {
+		if(parents) {
+			if(parents instanceof Array) {
 				var newParents = [];
 				parents.forEach(function(mummy) {
 					var elem = create();
