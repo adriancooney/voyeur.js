@@ -103,14 +103,16 @@
 			map[tag].push(child);
 		}
 
-		Object.keys(map).forEach(function(key) {
-			Object.defineProperty(node, key, {
-				get: function() {
-					return Voyeur(map[key].length === 1 ? map[key][0] : map[key]);
-				},
+		for(var key in map) {
+			(function(key) {
+				Object.defineProperty(node, key, {
+					get: function() {
+						return Voyeur(map[key].length === 1 ? map[key][0] : map[key]);
+					},
 
-				configurable: true
-			});
+					configurable: true
+				});
+			})(key);
 		});
 	};
 
