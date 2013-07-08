@@ -24,7 +24,7 @@ function executeInput() {
 		doc = frame.contentWindow.document;
 
 	var script = doc.createElement("script");
-	script.innerHTML = "try { " + data + "} catch(e) { _demoError(e) } ";
+	script.innerHTML = data
 	script.id = "executable";
 
 	if(doc.getElementById("executable")) doc.body.removeChild(doc.getElementById("executable"));
@@ -33,7 +33,6 @@ function executeInput() {
 
 function animateText(from, to, fn, done) {
 	var str = from, i = to.length, index = (to.indexOf(from) == 0) ? from.length : 0;
-	console.log(index);
 	(function animate() {
 		if(str.length > index) str = str.substr(0, str.length - 1), fn(str);
 		else {
