@@ -75,9 +75,9 @@ var Storyboard = {
 	story: [
 		"Voyeur.div",
 		"Voyeur.div.section",
-		"Voyeur.div.section.eq(0)",
-		"Voyeur.div.section.eq(0).ul.li",
-		"Voyeur.div.section.eq(0).ul.li.use(function(li, i) {\n\tli.textContent = \"List item #\" + i; \n});",
+		"Voyeur.div.section.eq(1)",
+		"Voyeur.div.section.eq(1).ul.li",
+		"Voyeur.div.section.eq(1).ul.li.use(function(li, i) {\n\tli.textContent = \"List item #\" + i; \n});",
 		"Voyeur.find(\"#empty\")",
 		"Voyeur.find(\"#empty\").create.h1",
 		"Voyeur.find(\"#empty\").create.h1.em\n\t.textContent = \"Another h1\";",
