@@ -15,10 +15,10 @@
 
 		//Create the `create` instance
 		nodes.create = Voyeur.extendTags({}, function(tag) {
-			return Voyeur.create.bind({
+			return Voyeur.create.call({
 				tag: tag,
 				parents: nodes
-			})();
+			});
 		});
 
 		/**
@@ -87,7 +87,7 @@
 	 * @return {Object}      The object extended
 	 */
 	Voyeur.extendChildren = function(node, children) {
-		children = Array.prototype.slice.call(children || node.children);
+		children = children || node.children;
 
 		//The tag map
 		var map = {};
@@ -103,18 +103,15 @@
 			map[tag].push(child);
 		}
 
-		/* jshint loopfunc: true */
-		for(var key in map) {
-			(function(key) { //Closure required
-				Object.defineProperty(node, key, {
-					get: function() {
-						return Voyeur(map[key].length === 1 ? map[key][0] : map[key]);
-					},
+		Object.keys(map).forEach(function(key) {
+			Object.defineProperty(node, key, {
+				get: function() {
+					return Voyeur(map[key].length === 1 ? map[key][0] : map[key]);
+				},
 
-					configurable: true
-				});
-			})(key);
-		}
+				configurable: true
+			});
+		});
 	};
 
 	/**
@@ -130,11 +127,11 @@
 		Voyeur.extendTags(self, function(tag) {
 			Voyeur.unextendTags(self);
 
-			return Voyeur.create.bind({
+			return Voyeur.create.call({
 				root: self.root,
 				parents: self,
 				tag: tag
-			})();
+			});
 		});
 
 		self.use = function(fn) {
@@ -164,17 +161,17 @@
 				var elem = Voyeur.createElement(self.parents, self.tagName.toLowerCase());
 				elems.push(elem);
 			}
-			return Voyeur.create.bind({
+			return Voyeur.create.call({
 				root: self.root
-			})(elems);
+			}, elems);
 		};
 
 		self.special = function(tag) {
-			return Voyeur.create.bind({
+			return Voyeur.create.call({
 				root: self.root,
 				parents: self,
 				tag: tag
-			})();
+			});
 		};
 
 		return self;
@@ -251,16 +248,16 @@
 
 		//Create for the root Voyeur
 		window.Voyeur.create = Voyeur.extendTags({}, function(tag) {
-			return Voyeur.create.bind({
+			return Voyeur.create.call({
 				tag: tag
-			})();
+			});
 		});
 
 		//Special create function 
 		window.Voyeur.create.special = function(tag) {
-			return Voyeur.create.bind({
+			return Voyeur.create.call({
 				tag: tag
-			})();
+			});
 		};
 	});
 })();
