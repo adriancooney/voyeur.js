@@ -30,7 +30,7 @@
 			if(fn) {
 				if(nodes instanceof Array) {
 					nodes.forEach(function(elem, i) {
-						var elem = Voyeur(elem);
+						elem = Voyeur(elem);
 						fn.call(elem, elem, i);
 					});
 				} else {
@@ -92,13 +92,14 @@
 		//The tag map
 		var map = {};
 
-		for(var i = children.length - 1; i >= 0; i--) {
+		for(var i = 0, cache = children.length; i < cache; i++) {
 			var child = children[i],
 				tag = child.tagName.toLowerCase();
 
 			if(!map[tag]) {
 				map[tag] = [];
 			}
+
 			map[tag].push(child);
 		}
 

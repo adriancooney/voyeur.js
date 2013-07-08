@@ -50,4 +50,8 @@ test("Voyeur.<tag>.eq(<int>, <int>) -- Range selection in list", function() {
 	ok(Voyeur.section.div.eq(0, 3).length > 2, "Nodes selected!")
 });
 
+test("Voyeur.<tag> -- Returns nodes in descending order", function() {
+	var div = Voyeur.section.div;
+	ok(div[0].id == "first" && div[div.length - 1].id == "last", "Order is descending");
+})
 
