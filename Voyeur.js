@@ -87,7 +87,7 @@
 	 * @return {Object}      The object extended
 	 */
 	Voyeur.extendChildren = function(node, children) {
-		children = Array.prototype.slice.call(children || node.children);
+		children = children || node.children;
 
 		//The tag map
 		var map = {};
