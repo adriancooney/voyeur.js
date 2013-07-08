@@ -103,18 +103,15 @@
 			map[tag].push(child);
 		}
 
-		/* jshint loopfunc: true */
-		for(var key in map) {
-			(function(key) { //Closure required
-				Object.defineProperty(node, key, {
-					get: function() {
-						return Voyeur(map[key].length === 1 ? map[key][0] : map[key]);
-					},
+		Object.keys(map).forEach(function(key) {
+			Object.defineProperty(node, key, {
+				get: function() {
+					return Voyeur(map[key].length === 1 ? map[key][0] : map[key]);
+				},
 
-					configurable: true
-				});
-			})(key);
-		}
+				configurable: true
+			});
+		});
 	};
 
 	/**
