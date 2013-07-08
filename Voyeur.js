@@ -30,7 +30,7 @@
 			if(fn) {
 				if(nodes instanceof Array) {
 					nodes.forEach(function(elem, i) {
-						var elem = Voyeur(elem);
+						elem = Voyeur(elem);
 						fn.call(elem, elem, i);
 					});
 				} else {
@@ -99,7 +99,7 @@
 			if(!map[tag]) {
 				map[tag] = [];
 			}
-			map[tag].push(child);
+			map[tag].unshift(child);
 		}
 
 		/* jshint loopfunc: true */
