@@ -1,6 +1,6 @@
 # Voyeur
 ### [http://dunxrion.github.io/voyeur.js](http://dunxrion.github.io/voyeur.js)
-Voyeur is a tiny (1.2kb) Javascript library that lets you transverse and manipulate the DOM the way it should have been. See [here](http://dunxrion.github.io/voyeur.js) for a demo, more information and documentation.
+Voyeur is a tiny (1.2kb) Javascript library that lets you traverse and manipulate the DOM the way it should have been. See [here](http://dunxrion.github.io/voyeur.js) for a demo, more information and documentation.
 
 ```html
 <body>

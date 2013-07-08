@@ -1,7 +1,7 @@
 {
     "name": "Voyeur",
     "version": "0.3.0",
-    "description": "Voyeur is a tiny (1.2kb) Javascript library that lets you transverse and manipulate the DOM the way it should have been.",
+    "description": "Voyeur is a tiny (1.2kb) Javascript library that lets you traverse and manipulate the DOM the way it should have been.",
     "main": "Voyeur.min.js",
     "homepage": "http://dunxrion.github.io/voyeur.js/",
     "bugs": "https://github.com/dunxrion/dunxrion/issues",

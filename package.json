@@ -2,11 +2,11 @@
   "name": "Voyeur",
   "private": true,
   "version": "0.3.0",
-  "description": "Voyeur is a tiny (1.2kb) Javascript library that lets you transverse and manipulate the DOM the way it should have been.",
+  "description": "Voyeur is a tiny (1.2kb) Javascript library that lets you traverse and manipulate the DOM the way it should have been.",
   "homepage": "http://dunxrion.github.io/voyeur.js/",
   "github": "https://github.com/dunxrion/voyeur.js",
   "keywords": [
-    "transverse",
+    "traverse",
     "DOM"
   ],
   "author": {
