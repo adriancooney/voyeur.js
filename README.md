@@ -46,6 +46,10 @@ Voyeur.div.appendChild(content);
 Install via bower (courtesy of @pid)
 
 	bower install Voyeur
+
+Install via component
+
+	component install dunxrion/voyeur.js
 	
 Include the script somewhere on the page.
 
