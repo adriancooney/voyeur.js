@@ -99,7 +99,7 @@
 			if(!map[tag]) {
 				map[tag] = [];
 			}
-			map[tag].push(child);
+			map[tag].unshift(child);
 		}
 
 		/* jshint loopfunc: true */
