@@ -92,14 +92,15 @@
 		//The tag map
 		var map = {};
 
-		for(var i = children.length - 1; i >= 0; i--) {
+		for(var i = 0, cache = children.length; i < cache; i++) {
 			var child = children[i],
 				tag = child.tagName.toLowerCase();
 
 			if(!map[tag]) {
 				map[tag] = [];
 			}
-			map[tag].unshift(child);
+
+			map[tag].push(child);
 		}
 
 		/* jshint loopfunc: true */
