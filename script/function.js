@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	//The intent edit
 	var timeout;
 	input.addEventListener("keydown", function() {
+		if(Storyboard.running) Storyboard.pause();
 		if(timeout) clearTimeout(timeout);
 		timeout = setTimeout(executeInput, 1000);
 	});
@@ -23,7 +24,7 @@ function executeInput() {
 		doc = frame.contentWindow.document;
 
 	var script = doc.createElement("script");
-	script.innerHTML = data;
+	script.innerHTML = "try { " + data + "} catch(e) { _demoError(e) } ";
 	script.id = "executable";
 
 	if(doc.getElementById("executable")) doc.body.removeChild(doc.getElementById("executable"));
