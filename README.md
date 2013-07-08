@@ -50,7 +50,7 @@ Install via bower (courtesy of @pid)
 Include the script somewhere on the page.
 
 ```html
-<script src="text/javascript" src="Voyeur.min.js"></script>
+<script type="text/javascript" src="Voyeur.min.js"></script>
 ```
 
 ## Todo
