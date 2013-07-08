@@ -113,7 +113,7 @@
 					configurable: true
 				});
 			})(key);
-		});
+		}
 	};
 
 	/**
