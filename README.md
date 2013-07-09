@@ -46,6 +46,10 @@ Voyeur.div.appendChild(content);
 Install via bower (courtesy of @pid)
 
 	bower install Voyeur
+
+Install via component
+
+	component install dunxrion/voyeur.js
 	
 Include the script somewhere on the page.
 
@@ -57,4 +61,4 @@ Include the script somewhere on the page.
 * Make Voyeur handle ~~~DOMSubtreeModified~~~ DOM changes with `MutationObserver`.
 
 ## License
-[MIT License](https://raw.github.com/dunxrion/voyeur.js/master/LICENCE)
+[MIT License](https://raw.github.com/dunxrion/voyeur.js/master/LICENSE)
