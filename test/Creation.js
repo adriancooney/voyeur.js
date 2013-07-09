@@ -31,3 +31,9 @@ test("Voyeur.<tag>.create.<tag>.mult(<int>) -- Element multiplication on tag and
 	equal(spans[0].tagName, "SPAN", "Element specified created");
 	equal(spans[0].parentNode.tagName, "SECTION", "Appended!");
 });
+
+test("Voyeur.<tag>.create.tagA & Voyeur.<tag>.tagA -- Event selection on caches Voyeur elements after creation", function() {
+	var section = Voyeur.section;
+	section.create.header;
+	ok(section.header, "tagA exists after creation.");
+})
