@@ -61,4 +61,4 @@ Include the script somewhere on the page.
 * Make Voyeur handle the DOMSubtreeModified event.
 
 ## License
-[MIT License](https://raw.github.com/dunxrion/voyeur.js/master/LICENCE)
+[MIT License](https://raw.github.com/dunxrion/voyeur.js/master/LICENSE)
