@@ -58,7 +58,7 @@ Include the script somewhere on the page.
 ```
 
 ## Todo
-* Make Voyeur handle ~~~DOMSubtreeModified~~~ DOM changes with `MutationObserver`.
+* Make Voyeur handle <del>DOMSubtreeModified</del> DOM changes with `MutationObserver`.
 
 ## License
 [MIT License](https://raw.github.com/dunxrion/voyeur.js/master/LICENSE)
