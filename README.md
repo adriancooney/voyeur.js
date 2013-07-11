@@ -3,7 +3,7 @@
 Voyeur is a tiny (1.2kb) Javascript library that lets you traverse and manipulate the DOM the way it should have been. See [here](http://dunxrion.github.io/voyeur.js) for a demo, more information and documentation.
 
 ## Warning
-Voyeur is a great concept but I highly recommend you **avoid it in production**. There is serious performance issues yet to be worked out.
+Voyeur is a great concept but I highly recommend you **avoid it in production**. There is serious performance issues yet to be worked out. [See here](https://github.com/dunxrion/voyeur.js/issues/20).
 
 ## Example
 ```html
