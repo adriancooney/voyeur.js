@@ -1,9 +1,9 @@
 # Voyeur
-### [http://dunxrion.github.io/voyeur.js](http://dunxrion.github.io/voyeur.js)
-Voyeur is a tiny (1.2kb) Javascript library that lets you traverse and manipulate the DOM the way it should have been. See [here](http://dunxrion.github.io/voyeur.js) for a demo, more information and documentation.
+### [http://adriancooney.github.io/voyeur.js](http://adriancooney.github.io/voyeur.js)
+Voyeur is a tiny (1.2kb) Javascript library that lets you traverse and manipulate the DOM the way it should have been. See [here](http://adriancooney.github.io/voyeur.js) for a demo, more information and documentation.
 
 ## Warning
-Voyeur is a great concept but I highly recommend you **avoid it in production**. There is serious performance issues yet to be worked out. [See here](https://github.com/dunxrion/voyeur.js/issues/20).
+Voyeur is a great concept but I highly recommend you **avoid it in production**. There is serious performance issues yet to be worked out. [See here](https://github.com/adriancooney/voyeur.js/issues/20).
 
 ## Example
 ```html
@@ -70,4 +70,4 @@ Voyeur has managed to inspire a couple of other spin-off projects.
 * Make Voyeur handle <del>DOMSubtreeModified</del> DOM changes with `MutationObserver`.
 
 ## License
-[MIT License](https://raw.github.com/dunxrion/voyeur.js/master/LICENSE)
+[MIT License](https://raw.github.com/adriancooney/voyeur.js/master/LICENSE)
