@@ -2,7 +2,7 @@
 ### [http://adriancooney.github.io/voyeur.js](http://adriancooney.github.io/voyeur.js)
 Voyeur is a tiny (1.2kb) Javascript library that lets you traverse and manipulate the DOM the way it should have been. See [here](http://adriancooney.github.io/voyeur.js) for a demo, more information and documentation. Voyeur allows you to traverse the DOM via the dot operator like you would any Javascript object. This makes for a streamlined and native experience like it always should have been.
 
-![Imgur](http://i.imgur.com/ogujHMs.gifv)
+![Imgur](http://i.imgur.com/ogujHMs.gif)
 ## Warning
 Voyeur is a great concept but I highly recommend you **avoid it in production**. There is serious performance issues yet to be worked out. [See here](https://github.com/adriancooney/voyeur.js/issues/20).
 
