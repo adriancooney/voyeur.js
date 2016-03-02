@@ -69,5 +69,15 @@ Voyeur has managed to inspire a couple of other spin-off projects.
 ## Todo
 * Make Voyeur handle <del>DOMSubtreeModified</del> DOM changes with `MutationObserver`.
 
+##INTRODUCTION :(Non Technical Description)
+voyeur.js is a tiny javascript library that lets you traverse and manipulate the DOM(Document Object Model) the way it should have been.
+One of the main goals of Voyeur was to abstract as little as possible from the DOM and keep things clean.
+Voyeur works by utilizing object getter functions to expose an element's children via their tag names on itself.
+This does not mean that we expose every element's children onto itself.An element's children is only exposed when it's required so only the elements used will be Voyeur'fied.
+Voyeur's advantage over JQuery :
+you can avoid huge libraries because generally we never use half of the great tools provided. 
+Voyeur does one job and it does it well, in a friendly way too which is always a plus.
+voyeur is an open-source project by Adrian Cooney.
+
 ## License
 [MIT License](https://raw.github.com/adriancooney/voyeur.js/master/LICENSE)
