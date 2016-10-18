@@ -1,4 +1,5 @@
 # Voyeur
+[![CDNJS](https://img.shields.io/cdnjs/v/Voyeur.svg)](https://cdnjs.com/libraries/Voyeur)
 ### [http://adriancooney.github.io/voyeur.js](http://adriancooney.github.io/voyeur.js)
 Voyeur is a tiny (1.2kb) Javascript library that lets you traverse and manipulate the DOM the way it should have been. See [here](http://adriancooney.github.io/voyeur.js) for a demo, more information and documentation.
 
